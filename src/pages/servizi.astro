@@ -49,8 +49,8 @@ const services = [
 ---
 
 <Layout
-  title="Servizi — WebCreator Studio"
-  description="Web design, SEO strategico, e-commerce, landing page e Google Ads. Scopri tutti i servizi di WebCreator Studio Palermo."
+  title="Servizi Web Design & SEO — WebCreator Studio Palermo"
+  description="Web design, SEO strategico, e-commerce, landing page e Google Ads. Soluzioni su misura per far crescere la tua attività online a Palermo e in tutta Italia."
 >
 
   <!-- HERO -->
@@ -84,6 +84,84 @@ const services = [
             )}
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEGRATIONS -->
+  <section class="integrations-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Stack tecnologico</span>
+        <h2>Tecnologie & Integrazioni</h2>
+        <p class="integrations-subtitle">Lavoriamo con le migliori piattaforme del mercato</p>
+      </div>
+      <div class="integrations-grid reveal-stagger">
+
+        <div class="integration-card">
+          <div class="integration-icon" style="background: #96bf48;">S</div>
+          <div class="integration-info">
+            <span class="integration-name">Shopify</span>
+            <span class="integration-desc">E-commerce scalabile e gestibile</span>
+          </div>
+        </div>
+
+        <div class="integration-card">
+          <div class="integration-icon" style="background: #7f54b3;">W</div>
+          <div class="integration-info">
+            <span class="integration-name">WooCommerce</span>
+            <span class="integration-desc">E-commerce su WordPress</span>
+          </div>
+        </div>
+
+        <div class="integration-card">
+          <div class="integration-icon" style="background: #6772e5;">S</div>
+          <div class="integration-info">
+            <span class="integration-name">Stripe</span>
+            <span class="integration-desc">Pagamenti online sicuri</span>
+          </div>
+        </div>
+
+        <div class="integration-card">
+          <div class="integration-icon" style="background: #f36458;">S</div>
+          <div class="integration-info">
+            <span class="integration-name">Sanity CMS</span>
+            <span class="integration-desc">Gestione contenuti headless</span>
+          </div>
+        </div>
+
+        <div class="integration-card">
+          <div class="integration-icon integration-icon--text">N</div>
+          <div class="integration-info">
+            <span class="integration-name">Next.js</span>
+            <span class="integration-desc">Framework React ad alte prestazioni</span>
+          </div>
+        </div>
+
+        <div class="integration-card">
+          <div class="integration-icon" style="background: #ff5d01;">A</div>
+          <div class="integration-info">
+            <span class="integration-name">Astro</span>
+            <span class="integration-desc">Siti statici ultra-veloci</span>
+          </div>
+        </div>
+
+        <div class="integration-card">
+          <div class="integration-icon integration-icon--muted">V</div>
+          <div class="integration-info">
+            <span class="integration-name">Vercel</span>
+            <span class="integration-desc">Deploy e hosting edge</span>
+          </div>
+        </div>
+
+        <div class="integration-card">
+          <div class="integration-icon" style="background: #e8710a;">G</div>
+          <div class="integration-info">
+            <span class="integration-name">Google Analytics</span>
+            <span class="integration-desc">Analytics e conversioni</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -232,6 +310,97 @@ const services = [
     padding: 0.2rem 0.6rem;
     border-radius: 100px;
     font-family: var(--sans);
+  }
+
+  /* INTEGRATIONS */
+  .integrations-section {
+    padding: 80px 0;
+    border-top: 1px solid var(--border);
+  }
+
+  .integrations-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-family: var(--sans);
+  }
+
+  .integrations-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 0;
+  }
+
+  .integration-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 24px;
+    border-radius: 6px;
+    transition: border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .integration-card:hover {
+    border-color: var(--accent);
+  }
+
+  .integration-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    font-family: var(--sans);
+    flex-shrink: 0;
+  }
+
+  .integration-icon--text {
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  .integration-icon--muted {
+    background: var(--text-muted);
+    color: var(--bg);
+  }
+
+  .integration-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .integration-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    font-family: var(--sans);
+  }
+
+  .integration-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-family: var(--sans);
+    line-height: 1.4;
+  }
+
+  @media (max-width: 1024px) {
+    .integrations-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .integrations-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   /* CTA BAND */
