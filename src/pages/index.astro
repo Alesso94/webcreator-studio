@@ -3,8 +3,8 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="WebCreator Studio — Web Design & SEO Palermo"
-  description="Studio di web design e SEO a Palermo. Siti performanti con Astro e Next.js, +340% traffico organico documentato. Scopri i nostri servizi."
+  title="WebCreator Studio — Sviluppo Web con Astro e Next.js a Palermo"
+  description="Studio web design a Palermo specializzato in Astro e Next.js. Siti veloci, SEO integrata, e-commerce headless. Portfolio e demo interattive disponibili."
 >
 
   <!-- ===== HERO ===== -->
@@ -104,6 +104,13 @@ import Layout from '../layouts/Layout.astro';
           <span class="stat-label">Anni di esperienza</span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== KEYWORD INTRO ===== -->
+  <section class="keyword-intro">
+    <div class="keyword-inner">
+      <p>Realizziamo <strong>siti web con Astro e Next.js</strong> a Palermo e in tutta Italia — framework moderni che garantiscono velocità, SEO tecnica integrata e Core Web Vitals al massimo. Dal sito vetrina all'<strong>e-commerce headless con Shopify</strong>, ogni progetto è costruito su misura per convertire visitatori in clienti.</p>
     </div>
   </section>
 
@@ -502,6 +509,27 @@ import Layout from '../layouts/Layout.astro';
     font-size: 0.85rem;
     color: var(--text-muted);
     font-family: var(--sans);
+  }
+
+  /* ===== KEYWORD INTRO ===== */
+  .keyword-intro {
+    padding: 48px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .keyword-intro .keyword-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .keyword-intro p {
+    font-size: 17px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .keyword-intro strong {
+    color: var(--text);
+    font-weight: 500;
   }
 
   /* ===== SERVICES ===== */
