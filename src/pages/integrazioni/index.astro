@@ -1,0 +1,273 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Integrazioni & Demo — WebCreator Studio"
+  description="Esplora le demo interattive di WebCreator Studio: e-commerce headless con Shopify + Astro, integrazioni CMS e molto altro. Realizzazioni concrete, non solo parole."
+  canonical="https://webcreator-studio.it/integrazioni"
+>
+
+  <section class="integrazioni-hero">
+    <div class="container">
+      <span class="section-label">Integrazioni & Demo</span>
+      <h1>Vedi le nostre<br /><em>integrazioni live.</em></h1>
+      <p class="hero-desc">
+        Progetti dimostrativi interattivi costruiti con le stesse tecnologie che
+        usiamo per i nostri clienti. Esplora, testa, poi chiamaci.
+      </p>
+    </div>
+  </section>
+
+  <section class="demos-section">
+    <div class="container">
+      <div class="demos-grid">
+
+        <!-- Shopify Demo — active -->
+        <a href="/integrazioni/shopify" class="demo-card">
+          <div class="demo-card-badge active">Live</div>
+          <div class="demo-card-icon">🛒</div>
+          <div class="demo-card-body">
+            <h2 class="demo-card-title">Shopify Demo</h2>
+            <p class="demo-card-desc">
+              E-commerce headless realizzato con Shopify Storefront API e Astro.
+              Filtri per categoria, carrello persistente, wishlist e checkout modale —
+              tutto interattivo, tutto statico.
+            </p>
+            <ul class="demo-card-tags">
+              <li>Shopify</li>
+              <li>Astro</li>
+              <li>Headless</li>
+              <li>Vanilla JS</li>
+              <li>LocalStorage</li>
+            </ul>
+          </div>
+          <span class="demo-card-cta">Esplora la demo →</span>
+        </a>
+
+        <!-- WooCommerce — coming soon -->
+        <div class="demo-card disabled" aria-disabled="true">
+          <div class="demo-card-badge soon">Prossimamente</div>
+          <div class="demo-card-icon muted">🛍️</div>
+          <div class="demo-card-body">
+            <h2 class="demo-card-title muted">WooCommerce</h2>
+            <p class="demo-card-desc muted">
+              Demo di un negozio WooCommerce headless con Next.js e WooCommerce REST API.
+              Gestione prodotti variabili, filtri avanzati e integrazione con i principali
+              gateway di pagamento.
+            </p>
+            <ul class="demo-card-tags muted">
+              <li>WooCommerce</li>
+              <li>Next.js</li>
+              <li>REST API</li>
+              <li>TypeScript</li>
+            </ul>
+          </div>
+          <span class="demo-card-cta muted">In costruzione…</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="integrazioni-cta">
+    <div class="container integrazioni-cta-inner">
+      <div>
+        <h2>Vuoi un'integrazione su misura?</h2>
+        <p>Connettere Shopify, WooCommerce, Stripe, CMS headless o qualsiasi API
+           al tuo sito — lo facciamo ogni giorno.</p>
+      </div>
+      <a href="/contatti" class="btn btn-primary">Parliamo del tuo progetto →</a>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* ===== HERO ===== */
+  .integrazioni-hero {
+    padding: 80px 0 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .integrazioni-hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+    margin-bottom: 18px;
+  }
+  .integrazioni-hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 540px;
+    line-height: 1.7;
+  }
+
+  /* ===== DEMOS GRID ===== */
+  .demos-section {
+    padding: 64px 0 80px;
+  }
+  .demos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .demo-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s, background 0.25s;
+    text-decoration: none;
+    color: var(--text);
+  }
+  a.demo-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-4px);
+    background: var(--bg3);
+  }
+  .demo-card.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* Badge */
+  .demo-card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    width: fit-content;
+  }
+  .demo-card-badge.active {
+    background: rgba(74,158,110,0.15);
+    color: #6ab88a;
+    border: 1px solid rgba(74,158,110,0.3);
+  }
+  .demo-card-badge.active::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #4a9e6e;
+    border-radius: 50%;
+    animation: pulse-dot 1.8s ease-in-out infinite;
+  }
+  .demo-card-badge.soon {
+    background: rgba(200,176,138,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(200,176,138,0.2);
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  /* Icon */
+  .demo-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+  .demo-card-icon.muted { filter: grayscale(1) opacity(0.4); }
+
+  /* Body */
+  .demo-card-body { flex: 1; }
+  .demo-card-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .demo-card-title.muted { color: var(--text-muted); }
+  .demo-card-desc {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .demo-card-desc.muted { color: var(--text-subtle); }
+
+  /* Tags */
+  .demo-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    list-style: none;
+    margin-bottom: 24px;
+  }
+  .demo-card-tags li {
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 3px 10px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+  .demo-card-tags.muted li { opacity: 0.5; }
+
+  /* CTA */
+  .demo-card-cta {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap 0.2s;
+  }
+  a.demo-card:hover .demo-card-cta { gap: 8px; }
+  .demo-card-cta.muted { color: var(--text-subtle); }
+
+  /* ===== BOTTOM CTA ===== */
+  .integrazioni-cta {
+    border-top: 1px solid var(--border);
+    padding: 64px 0;
+    background: var(--bg2);
+  }
+  .integrazioni-cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .integrazioni-cta h2 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+  .integrazioni-cta p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 460px;
+    line-height: 1.65;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .demos-grid { grid-template-columns: 1fr; }
+    .integrazioni-cta-inner { flex-direction: column; align-items: flex-start; }
+    .integrazioni-hero { padding: 60px 0 40px; }
+    .demos-section { padding: 48px 0 60px; }
+  }
+</style>
