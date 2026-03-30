@@ -1,0 +1,447 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Contatti — WebCreator Studio Palermo"
+  description="Contatta WebCreator Studio per un preventivo gratuito. Web design, SEO e sviluppo siti web a Palermo. Risposta entro 24 ore."
+>
+
+  <!-- HERO -->
+  <section class="contact-hero">
+    <div class="container contact-hero-inner">
+      <span class="section-label">Parliamo</span>
+      <h1>Parliamo del<br />tuo progetto</h1>
+      <p class="hero-desc">
+        Ogni grande sito web inizia con una conversazione.
+        Raccontaci cosa hai in mente — risponderemo entro 24 ore.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT BODY -->
+  <section class="contact-section">
+    <div class="container contact-grid">
+
+      <!-- LEFT: INFO -->
+      <div class="contact-info reveal">
+        <div class="info-block">
+          <h2>Come raggiungerci</h2>
+          <p class="info-sub">
+            Siamo un team di designer e sviluppatori basati a Palermo.
+            Lavoriamo con clienti in tutta Italia.
+          </p>
+        </div>
+
+        <div class="info-items">
+          <div class="info-item">
+            <div class="info-icon">✉</div>
+            <div>
+              <span class="info-label">Email</span>
+              <a href="mailto:ciao@webcreatorstudio.it" class="info-value">
+                ciao@webcreatorstudio.it
+              </a>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">☎</div>
+            <div>
+              <span class="info-label">Telefono</span>
+              <a href="tel:+390912345678" class="info-value">
+                +39 091 234 5678
+              </a>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">◎</div>
+            <div>
+              <span class="info-label">Sede</span>
+              <span class="info-value">Palermo, Sicilia — Italia</span>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">◷</div>
+            <div>
+              <span class="info-label">Orari</span>
+              <span class="info-value">Lun–Ven: 9:00–18:30</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-note">
+          <p>
+            Per un <strong>audit SEO gratuito</strong> del tuo sito visita
+            <a
+              href="https://webcreator-seo.it"
+              target="_blank"
+              rel="noopener"
+              class="note-link"
+            >webcreator-seo.it</a> — la nostra piattaforma SEO dedicata.
+          </p>
+        </div>
+
+        <div class="response-badge">
+          <span class="badge-dot"></span>
+          Risposta garantita entro 24 ore
+        </div>
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <div class="contact-form-wrap reveal">
+        <form
+          class="contact-form"
+          action="mailto:ciao@webcreatorstudio.it"
+          method="get"
+          enctype="text/plain"
+        >
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Nome e cognome *</label>
+              <input
+                type="text"
+                id="name"
+                name="Nome"
+                placeholder="Mario Rossi"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input
+                type="email"
+                id="email"
+                name="Email"
+                placeholder="mario@esempio.it"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Telefono</label>
+            <input
+              type="tel"
+              id="phone"
+              name="Telefono"
+              placeholder="+39 320 000 0000"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="service">Servizio di interesse *</label>
+            <select id="service" name="Servizio" required>
+              <option value="" disabled selected>Seleziona un servizio</option>
+              <option value="web-design">Web Design & Sviluppo</option>
+              <option value="seo">SEO Strategico</option>
+              <option value="ecommerce">E-commerce</option>
+              <option value="landing-page">Landing Page</option>
+              <option value="google-ads">Google Ads & Performance</option>
+              <option value="audit-seo">Audit SEO Gratuito</option>
+              <option value="altro">Altro / Non so ancora</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Budget indicativo</label>
+            <select id="budget" name="Budget">
+              <option value="" disabled selected>Seleziona una fascia</option>
+              <option value="sotto-1k">Sotto €1.000</option>
+              <option value="1k-3k">€1.000 – €3.000</option>
+              <option value="3k-8k">€3.000 – €8.000</option>
+              <option value="8k-plus">Oltre €8.000</option>
+              <option value="da-definire">Da definire insieme</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Descrivi il tuo progetto *</label>
+            <textarea
+              id="message"
+              name="Messaggio"
+              rows="5"
+              placeholder="Raccontaci del tuo business, dei tuoi obiettivi e di cosa hai bisogno..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary form-submit">
+            Invia il messaggio →
+          </button>
+
+          <p class="form-note">
+            I tuoi dati sono al sicuro. Non inviamo spam, mai.
+          </p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* HERO */
+  .contact-hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-hero-inner {
+    max-width: 620px;
+  }
+
+  .contact-hero-inner h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-family: var(--sans);
+  }
+
+  /* CONTACT SECTION */
+  .contact-section {
+    padding: 80px 0 100px;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  /* INFO COLUMN */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .info-block h2 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .info-sub {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    font-family: var(--sans);
+  }
+
+  .info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .info-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--accent-dim);
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .info-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    margin-bottom: 0.2rem;
+    font-family: var(--sans);
+  }
+
+  .info-value {
+    font-size: 0.9rem;
+    color: var(--text);
+    font-family: var(--sans);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  a.info-value:hover {
+    color: var(--accent);
+  }
+
+  .info-note {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .info-note p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    font-family: var(--sans);
+  }
+
+  .info-note strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .note-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s;
+  }
+
+  .note-link:hover {
+    opacity: 0.75;
+  }
+
+  .response-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    color: var(--green);
+    font-family: var(--sans);
+    font-weight: 500;
+  }
+
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74, 158, 110, 0.4); }
+    50%       { opacity: 0.8; box-shadow: 0 0 0 6px rgba(74, 158, 110, 0); }
+  }
+
+  /* FORM COLUMN */
+  .contact-form-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2.5rem;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    font-family: var(--sans);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--bg2);
+    border: 1px solid var(--border-strong);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s ease;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .form-group select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238a8880' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--text-subtle);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-submit {
+    width: 100%;
+    justify-content: center;
+    padding: 0.9rem 2rem;
+    font-size: 0.95rem;
+  }
+
+  .form-note {
+    font-size: 0.75rem;
+    color: var(--text-subtle);
+    text-align: center;
+    font-family: var(--sans);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-form-wrap {
+      padding: 1.75rem;
+    }
+  }
+</style>

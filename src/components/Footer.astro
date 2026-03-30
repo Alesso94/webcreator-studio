@@ -1,0 +1,138 @@
+---
+const footerLinks = [
+  { href: '/servizi', label: 'Servizi' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contatti', label: 'Contatti' },
+];
+---
+
+<footer class="footer">
+  <div class="footer-inner container">
+    <div class="footer-logo">
+      <a href="/" class="logo">
+        WebCreator<strong>Studio</strong>.it
+      </a>
+      <p class="footer-tagline">Web Design & SEO · Palermo, Italia</p>
+      <p class="footer-seo-link">
+        Agenzia SEO: <a
+          href="https://webcreator-seo.it"
+          target="_blank"
+          rel="noopener"
+          class="seo-backlink"
+        >WebCreator SEO Palermo</a>
+      </p>
+    </div>
+
+    <nav class="footer-links">
+      {footerLinks.map((link) => (
+        <a href={link.href} class="footer-link">{link.label}</a>
+      ))}
+    </nav>
+
+    <div class="footer-copy">
+      <p>© 2026 WebCreatorStudio.it · Palermo</p>
+      <p class="footer-sub">P.IVA · Sicilia, Italia</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 0;
+    background: var(--bg2);
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .logo strong {
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .footer-tagline {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-subtle);
+    font-family: var(--sans);
+  }
+
+  .footer-seo-link {
+    margin-top: 0.75rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-family: var(--sans);
+  }
+
+  .seo-backlink {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s;
+  }
+
+  .seo-backlink:hover {
+    opacity: 0.8;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-link {
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-link:hover {
+    color: var(--text);
+  }
+
+  .footer-copy {
+    text-align: right;
+  }
+
+  .footer-copy p {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .footer-sub {
+    margin-top: 0.35rem;
+    font-size: 0.78rem !important;
+    color: var(--text-subtle) !important;
+  }
+
+  @media (max-width: 768px) {
+    .footer-inner {
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .footer-copy {
+      text-align: left;
+    }
+  }
+</style>

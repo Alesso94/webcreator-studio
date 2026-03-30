@@ -1,0 +1,283 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  {
+    num: '01',
+    title: 'Web Design & Sviluppo',
+    description:
+      'Creiamo siti web moderni, veloci e ottimizzati per convertire. Utilizziamo le tecnologie più performanti — Astro, Next.js, TypeScript — per garantire velocità, sicurezza e scalabilità.',
+    tags: ['Next.js', 'Astro', 'TypeScript', 'UI/UX', 'Responsive', 'CMS'],
+  },
+  {
+    num: '02',
+    title: 'SEO Strategico',
+    description:
+      'Posizionamento organico duraturo su Google. Analizziamo il tuo mercato, individuiamo le keyword più profittevoli e costruiamo una strategia SEO a lungo termine.',
+    tags: ['Audit SEO', 'Keyword Research', 'Link Building', 'Analytics', 'Technical SEO'],
+  },
+  {
+    num: '03',
+    title: 'E-commerce',
+    description:
+      'Negozi online che vendono. Progettiamo l\'intera esperienza d\'acquisto — dalla scheda prodotto al checkout — con attenzione alle conversioni e alla UX mobile.',
+    tags: ['Shopify', 'WooCommerce', 'Checkout', 'Mobile UX', 'Payment'],
+  },
+  {
+    num: '04',
+    title: 'Landing Page',
+    description:
+      'Pagine di atterraggio ad alta conversione per campagne pubblicitarie, lanci di prodotto e lead generation. Ogni elemento è progettato per massimizzare il tasso di conversione.',
+    tags: ['CRO', 'A/B Test', 'Copywriting', 'Lead Gen', 'Google Ads'],
+  },
+  {
+    num: '05',
+    title: 'Google Ads & Performance',
+    description:
+      'Campagne Google Ads gestite con dati reali, non con intuizioni. Monitoriamo ogni euro speso e ottimizziamo continuamente per abbassare il costo per acquisizione.',
+    tags: ['Search Ads', 'Display', 'Remarketing', 'Conversioni', 'ROI'],
+  },
+  {
+    num: '06',
+    title: 'Consulenza & Audit SEO gratuito',
+    description:
+      'Prima di iniziare, ti offriamo un\'analisi completa del tuo sito. Scopri cosa ti impedisce di posizionarti su Google e ottieni una roadmap concreta per migliorare.',
+    tags: ['Audit Gratuito', 'Strategia', 'Roadmap', 'Consulenza'],
+    highlight: true,
+  },
+];
+---
+
+<Layout
+  title="Servizi — WebCreator Studio"
+  description="Web design, SEO strategico, e-commerce, landing page e Google Ads. Scopri tutti i servizi di WebCreator Studio Palermo."
+>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <span class="section-label">Cosa facciamo</span>
+      <h1>I nostri servizi</h1>
+      <p class="page-hero-desc">
+        Soluzioni digitali su misura per aziende e professionisti che vogliono
+        crescere online. Ogni progetto è unico — ogni strategia è personalizzata.
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section class="services-section">
+    <div class="container">
+      <div class="services-grid reveal-stagger">
+        {services.map((s) => (
+          <div class:list={['service-card', { highlight: s.highlight }]}>
+            <span class="service-num">{s.num}</span>
+            <h2 class="service-title">{s.title}</h2>
+            <p class="service-desc">{s.description}</p>
+            <div class="service-tags">
+              {s.tags.map((tag) => (
+                <span>{tag}</span>
+              ))}
+            </div>
+            {s.highlight && (
+              <div class="service-badge">Gratuito</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band reveal">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2>Non sai da dove iniziare?</h2>
+        <p>
+          Contattaci per una consulenza gratuita. Analizziamo la tua situazione e
+          ti proponiamo la soluzione più adatta.
+        </p>
+      </div>
+      <a href="/contatti" class="btn btn-primary">Contattaci ora →</a>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* PAGE HERO */
+  .page-hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-hero-inner {
+    max-width: 680px;
+  }
+
+  .page-hero-inner h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .page-hero-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-family: var(--sans);
+  }
+
+  /* SERVICES GRID */
+  .services-section {
+    padding: 80px 0;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .service-card {
+    background: var(--bg);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s ease;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover,
+  .service-card.highlight {
+    background: var(--bg2);
+  }
+
+  .service-card.highlight {
+    background: var(--accent-dim);
+  }
+
+  .service-card:hover::before,
+  .service-card.highlight::before {
+    transform: scaleX(1);
+  }
+
+  .service-num {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-family: var(--sans);
+  }
+
+  .service-title {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .service-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-family: var(--sans);
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .service-tags span {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-family: var(--sans);
+  }
+
+  .service-badge {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    background: var(--green);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    font-family: var(--sans);
+  }
+
+  /* CTA BAND */
+  .cta-band {
+    background: var(--bg3);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 64px 0;
+    margin-bottom: 0;
+  }
+
+  .cta-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-text h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cta-text p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    max-width: 480px;
+    font-family: var(--sans);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

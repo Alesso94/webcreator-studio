@@ -1,0 +1,361 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  {
+    slug: 'ristorante-siciliano',
+    client: 'Ristorante Siciliano',
+    sector: 'Food & Ristorazione',
+    result: '+320% prenotazioni online',
+    desc: 'Sito vetrina con menu digitale, sistema di prenotazione e SEO locale. Domina le ricerche "ristorante Palermo" su Google.',
+    gradient: 'linear-gradient(135deg, #2d1f0a 0%, #5c3d0f 100%)',
+    accentColor: '#c8893a',
+    tags: ['Astro', 'SEO Locale', 'Booking'],
+  },
+  {
+    slug: 'studio-legale',
+    client: 'Studio Legale Torrisi',
+    sector: 'Professioni Legali',
+    result: '+180% contatti qualificati',
+    desc: 'Sito professionale per studio legale con posizionamento organico per le principali aree di pratica. Design autorevole e conversioni ottimizzate.',
+    gradient: 'linear-gradient(135deg, #0d1a2e 0%, #1a3354 100%)',
+    accentColor: '#4a8abf',
+    tags: ['Next.js', 'SEO', 'CRO'],
+  },
+  {
+    slug: 'agenzia-immobiliare',
+    client: 'Ferrara Immobiliare',
+    sector: 'Real Estate',
+    result: '3× lead generati',
+    desc: 'Portale immobiliare con ricerca avanzata, schede proprietà ottimizzate SEO e landing page per la valutazione gratuita degli immobili.',
+    gradient: 'linear-gradient(135deg, #0a1a12 0%, #1a4030 100%)',
+    accentColor: '#3a9e6a',
+    tags: ['Next.js', 'CMS', 'Lead Gen'],
+  },
+  {
+    slug: 'bb-palermo',
+    client: 'B&B Palermo Centro',
+    sector: 'Turismo & Ospitalità',
+    result: '+240% prenotazioni dirette',
+    desc: 'Sito per struttura ricettiva con booking engine diretto, ottimizzazione per "B&B Palermo" e riduzione commissioni OTA del 35%.',
+    gradient: 'linear-gradient(135deg, #1a0d28 0%, #3d1f5c 100%)',
+    accentColor: '#9a6abf',
+    tags: ['Astro', 'Booking', 'SEO Locale'],
+  },
+  {
+    slug: 'ecommerce-prodotti-tipici',
+    client: 'Sapori di Sicilia',
+    sector: 'E-commerce · Food',
+    result: '€45k fatturato primo anno',
+    desc: 'E-commerce di prodotti tipici siciliani con UX ottimizzata, checkout veloce e campagne Google Shopping. Spedizioni in tutta Italia.',
+    gradient: 'linear-gradient(135deg, #2a0d0d 0%, #5c1f1f 100%)',
+    accentColor: '#bf4a4a',
+    tags: ['E-commerce', 'Google Ads', 'Shopping'],
+  },
+  {
+    slug: 'studio-dentistico',
+    client: 'Studio Dentistico Marino',
+    sector: 'Healthcare & Salute',
+    result: '95 Lighthouse score',
+    desc: 'Sito per studio dentistico con prenotazione online, schede dei trattamenti ottimizzate SEO e posizionamento dominante in local pack.',
+    gradient: 'linear-gradient(135deg, #0d1f2a 0%, #1a3d4a 100%)',
+    accentColor: '#4abfbf',
+    tags: ['Astro', 'Booking', 'Healthcare SEO'],
+  },
+];
+---
+
+<Layout
+  title="Portfolio — WebCreator Studio"
+  description="Scopri i progetti di WebCreator Studio: siti web, e-commerce e strategie SEO per clienti in Sicilia e in tutta Italia."
+>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <span class="section-label">I nostri lavori</span>
+      <h1>Portfolio</h1>
+      <p class="page-hero-desc">
+        Ogni progetto è una storia di crescita. Guarda come abbiamo aiutato
+        aziende siciliane e italiane a crescere online con design e SEO.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROJECTS GRID -->
+  <section class="portfolio-section">
+    <div class="container">
+      <div class="projects-grid reveal-stagger">
+        {projects.map((p) => (
+          <article class="project-card" style={`--card-gradient: ${p.gradient}; --card-accent: ${p.accentColor};`}>
+            <div class="project-visual">
+              <div class="project-bg"></div>
+              <div class="project-overlay">
+                <div class="overlay-content">
+                  <p class="overlay-desc">{p.desc}</p>
+                  <div class="overlay-tags">
+                    {p.tags.map((t) => <span>{t}</span>)}
+                  </div>
+                </div>
+              </div>
+              <div class="project-result">
+                <span>{p.result}</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <div>
+                <h2 class="project-client">{p.client}</h2>
+                <span class="project-sector">{p.sector}</span>
+              </div>
+              <span class="project-arrow">→</span>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal">
+    <div class="container cta-inner">
+      <div class="cta-glow"></div>
+      <span class="section-label">Prossimo</span>
+      <h2>Il tuo progetto<br />potrebbe essere qui.</h2>
+      <p>
+        Raccontaci la tua idea. Progettiamo insieme la soluzione digitale
+        che ti farà crescere.
+      </p>
+      <a href="/contatti" class="btn btn-primary">Inizia il tuo progetto →</a>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* PAGE HERO */
+  .page-hero {
+    padding: 80px 0 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-hero-inner {
+    max-width: 680px;
+  }
+
+  .page-hero-inner h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1.25rem;
+  }
+
+  .page-hero-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-family: var(--sans);
+  }
+
+  /* PROJECTS GRID */
+  .portfolio-section {
+    padding: 80px 0;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: border-color 0.25s ease, transform 0.25s ease;
+    cursor: pointer;
+  }
+
+  .project-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-4px);
+  }
+
+  .project-visual {
+    position: relative;
+    height: 240px;
+    background: var(--card-gradient);
+    overflow: hidden;
+  }
+
+  .project-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--card-gradient);
+    transition: transform 0.4s ease;
+  }
+
+  .project-card:hover .project-bg {
+    transform: scale(1.04);
+  }
+
+  /* Decorative grid lines */
+  .project-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .project-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 11, 10, 0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+    padding: 2rem;
+  }
+
+  .project-card:hover .project-overlay {
+    opacity: 1;
+  }
+
+  .overlay-content {
+    text-align: center;
+  }
+
+  .overlay-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+    font-family: var(--sans);
+  }
+
+  .overlay-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+  }
+
+  .overlay-tags span {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    background: rgba(200, 176, 138, 0.15);
+    color: var(--accent);
+    font-family: var(--sans);
+  }
+
+  .project-result {
+    position: absolute;
+    bottom: 1.25rem;
+    left: 1.25rem;
+    z-index: 1;
+  }
+
+  .project-result span {
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    background: rgba(11, 11, 10, 0.75);
+    border: 1px solid var(--card-accent, var(--accent));
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--card-accent, var(--accent));
+    font-family: var(--sans);
+    backdrop-filter: blur(8px);
+  }
+
+  .project-info {
+    background: var(--surface);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .project-client {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+
+  .project-sector {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-family: var(--sans);
+  }
+
+  .project-arrow {
+    font-size: 1.1rem;
+    color: var(--text-subtle);
+    transition: color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .project-card:hover .project-arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    padding: 120px 0;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .cta-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200, 176, 138, 0.1) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .cta-inner h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+
+  .cta-inner > p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-family: var(--sans);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

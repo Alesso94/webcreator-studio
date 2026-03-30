@@ -1,11 +1,854 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="WebCreator Studio — Web Design & SEO Palermo"
+  description="Progettiamo siti web professionali e strategie SEO per far crescere la tua attività online. Dal concept al primo cliente organico. Palermo, Italia."
+>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-blobs">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <span class="hero-label">Web Design & SEO · Palermo, Italia</span>
+        <h1 class="hero-h1">
+          Siti web che<br /><em>convertono.</em><br />Visibilità che<br />dura.
+        </h1>
+        <p class="hero-desc">
+          Progettiamo siti web professionali e strategie SEO per far crescere la
+          tua attività online. Dal concept al primo cliente organico.
+        </p>
+        <div class="hero-ctas">
+          <a href="/contatti" class="btn btn-primary">Richiedi un preventivo</a>
+          <a href="/portfolio" class="btn btn-outline">Guarda i lavori</a>
+        </div>
+      </div>
+
+      <div class="hero-badge">
+        <div class="badge-inner">
+          <span class="badge-num">98</span>
+          <span class="badge-label">Lighthouse score</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TICKER ===== -->
+  <section class="ticker-section">
+    <div class="ticker-track">
+      <div class="ticker-items">
+        <span>Web Design</span>
+        <span class="dot">·</span>
+        <span>SEO Organico</span>
+        <span class="dot">·</span>
+        <span>Astro &amp; Next.js</span>
+        <span class="dot">·</span>
+        <span>Core Web Vitals</span>
+        <span class="dot">·</span>
+        <span>E-commerce</span>
+        <span class="dot">·</span>
+        <span>Google Ads</span>
+        <span class="dot">·</span>
+        <span>Landing Page</span>
+        <span class="dot">·</span>
+        <span>Palermo</span>
+        <span class="dot">·</span>
+        <span>Italia</span>
+        <span class="dot">·</span>
+        <!-- duplicate for infinite loop -->
+        <span>Web Design</span>
+        <span class="dot">·</span>
+        <span>SEO Organico</span>
+        <span class="dot">·</span>
+        <span>Astro &amp; Next.js</span>
+        <span class="dot">·</span>
+        <span>Core Web Vitals</span>
+        <span class="dot">·</span>
+        <span>E-commerce</span>
+        <span class="dot">·</span>
+        <span>Google Ads</span>
+        <span class="dot">·</span>
+        <span>Landing Page</span>
+        <span class="dot">·</span>
+        <span>Palermo</span>
+        <span class="dot">·</span>
+        <span>Italia</span>
+        <span class="dot">·</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="stats-section reveal">
+    <div class="container">
+      <div class="stats-grid reveal-stagger">
+        <div class="stat-item">
+          <span class="stat-num">50+</span>
+          <span class="stat-label">Progetti completati</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">3×</span>
+          <span class="stat-label">Traffico organico medio</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">98</span>
+          <span class="stat-label">Lighthouse score medio</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">8+</span>
+          <span class="stat-label">Anni di esperienza</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Cosa facciamo</span>
+        <h2>Soluzioni su misura<br />per la tua crescita online</h2>
+      </div>
+      <div class="services-grid reveal-stagger">
+        <div class="service-card">
+          <span class="service-num">01</span>
+          <h3>Web Design &amp; Sviluppo</h3>
+          <p>
+            Siti web moderni, veloci e ottimizzati per convertire i visitatori in
+            clienti. Sviluppiamo con le tecnologie più performanti del mercato.
+          </p>
+          <div class="service-tags">
+            <span>Next.js</span>
+            <span>Astro</span>
+            <span>TypeScript</span>
+            <span>UI/UX</span>
+            <span>Responsive</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">02</span>
+          <h3>SEO Strategico</h3>
+          <p>
+            Posizionamento organico duraturo su Google. Analisi, strategia e
+            ottimizzazione continua per portare traffico qualificato al tuo sito.
+          </p>
+          <div class="service-tags">
+            <span>Audit SEO</span>
+            <span>Keyword</span>
+            <span>Link Building</span>
+            <span>Analytics</span>
+          </div>
+        </div>
+
+        <div class="service-card">
+          <span class="service-num">03</span>
+          <h3>Landing Page ad Alta Conversione</h3>
+          <p>
+            Pagine pensate per convertire. Ogni elemento è progettato per guidare
+            l'utente all'azione con copy persuasivo e UX ottimizzata.
+          </p>
+          <div class="service-tags">
+            <span>CRO</span>
+            <span>A/B Test</span>
+            <span>Copywriting</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="services-cta reveal">
+        <a href="/servizi" class="btn btn-outline">Tutti i servizi →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="process-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Come lavoriamo</span>
+        <h2>Il nostro processo<br />in 4 fasi</h2>
+      </div>
+      <div class="process-grid reveal-stagger">
+        <div class="process-step">
+          <span class="process-num">01</span>
+          <h3>Discovery</h3>
+          <p>Analisi & Strategia</p>
+          <p class="process-desc">
+            Ascoltiamo il tuo business, analizziamo il mercato e definiamo gli
+            obiettivi concreti del progetto.
+          </p>
+        </div>
+        <div class="process-step">
+          <span class="process-num">02</span>
+          <h3>Design</h3>
+          <p>Progettazione UX/UI</p>
+          <p class="process-desc">
+            Progettiamo l'esperienza utente e l'interfaccia visiva, dal wireframe
+            al design system definitivo.
+          </p>
+        </div>
+        <div class="process-step">
+          <span class="process-num">03</span>
+          <h3>Build</h3>
+          <p>Sviluppo & SEO On-page</p>
+          <p class="process-desc">
+            Sviluppiamo il sito con codice pulito, ottimizzato per velocità e con
+            SEO on-page integrata fin dall'inizio.
+          </p>
+        </div>
+        <div class="process-step">
+          <span class="process-num">04</span>
+          <h3>Grow</h3>
+          <p>Crescita & Monitoraggio</p>
+          <p class="process-desc">
+            Monitoriamo le performance, ottimizziamo continuamente e supportiamo
+            la crescita organica del tuo business.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Cosa dicono i clienti</span>
+        <h2>Risultati reali,<br />clienti soddisfatti</h2>
+      </div>
+      <div class="testimonials-grid reveal-stagger">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">
+            "WebCreator Studio ha trasformato il nostro ristorante online. In sei
+            mesi abbiamo triplicato le prenotazioni dal web. Professionali e
+            attenti ad ogni dettaglio."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">GR</div>
+            <div>
+              <strong>Giuseppe Romano</strong>
+              <span>Trattoria da Romano · Palermo</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Il sito dello studio legale è finalmente al livello della nostra
+            reputazione. Clienti nuovi ogni settimana grazie al posizionamento
+            organico. Investimento ottimo."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">MT</div>
+            <div>
+              <strong>Marco Torrisi</strong>
+              <span>Studio Legale Torrisi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">
+            "Da quando abbiamo il nuovo sito e la strategia SEO, i contatti
+            qualificati sono aumentati del 180%. Il team è sempre disponibile e
+            competente."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SF</div>
+            <div>
+              <strong>Sara Ferrara</strong>
+              <span>CEO Ferrara Immobiliare</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section">
+    <div class="cta-glow"></div>
+    <div class="container cta-inner reveal">
+      <span class="section-label">Iniziamo</span>
+      <h2>Pronto a crescere online?</h2>
+      <p>
+        Raccontaci il tuo progetto. Risponderemo entro 24 ore con un'analisi
+        gratuita e una proposta su misura.
+      </p>
+      <a href="/contatti" class="btn btn-primary">Parliamo del tuo progetto →</a>
+    </div>
+  </section>
+
 </Layout>
+
+<style>
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-blobs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.18;
+  }
+
+  .blob-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    top: -200px;
+    right: -100px;
+    animation: blobPulse 8s ease-in-out infinite alternate;
+  }
+
+  .blob-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #4a6e9e 0%, transparent 70%);
+    bottom: -100px;
+    left: 10%;
+    animation: blobPulse 10s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes blobPulse {
+    from { opacity: 0.14; transform: scale(1); }
+    to   { opacity: 0.22; transform: scale(1.08); }
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+
+  .hero-content {
+    max-width: 640px;
+  }
+
+  .hero-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.08;
+    color: var(--text);
+    margin-bottom: 1.75rem;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .hero-h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .hero-badge {
+    flex-shrink: 0;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface);
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+
+  .badge-inner {
+    text-align: center;
+  }
+
+  .badge-num {
+    display: block;
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .badge-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: block;
+    margin-top: 0.3rem;
+  }
+
+  /* ===== TICKER ===== */
+  .ticker-section {
+    background: var(--accent);
+    overflow: hidden;
+    padding: 14px 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .ticker-track {
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-items {
+    display: inline-flex;
+    gap: 2rem;
+    align-items: center;
+    animation: ticker 25s linear infinite;
+  }
+
+  .ticker-items span {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #1a1714;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .ticker-items .dot {
+    color: rgba(26, 23, 20, 0.4);
+    font-size: 1rem;
+  }
+
+  /* ===== STATS ===== */
+  .stats-section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 2rem 2.5rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat-item:first-child {
+    padding-left: 0;
+  }
+
+  .stat-item:last-child {
+    border-right: none;
+  }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: var(--sans);
+  }
+
+  /* ===== SERVICES ===== */
+  .services-section {
+    padding: 100px 0;
+  }
+
+  .section-header {
+    margin-bottom: 3.5rem;
+  }
+
+  .section-header h2 {
+    font-size: clamp(2rem, 3.5vw, 3rem);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .service-card {
+    background: var(--bg);
+    padding: 2.5rem;
+    transition: background 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover {
+    background: var(--bg2);
+  }
+
+  .service-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .service-num {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .service-card h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .service-card > p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .service-tags span {
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.25rem 0.65rem;
+    border-radius: 100px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-family: var(--sans);
+  }
+
+  .services-cta {
+    text-align: center;
+  }
+
+  /* ===== PROCESS ===== */
+  .process-section {
+    padding: 100px 0;
+    background: var(--bg2);
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .process-step {
+    position: relative;
+    padding-top: 1.5rem;
+  }
+
+  .process-step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .process-num {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--text-subtle);
+    margin-bottom: 1rem;
+  }
+
+  .process-step h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    margin-bottom: 0.4rem;
+    color: var(--text);
+  }
+
+  .process-step > p:not(.process-desc) {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+    font-family: var(--sans);
+  }
+
+  .process-desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    font-family: var(--sans);
+  }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials-section {
+    padding: 100px 0;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .testimonial-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: border-color 0.25s ease;
+  }
+
+  .testimonial-card:hover {
+    border-color: var(--border-strong);
+  }
+
+  .stars {
+    color: var(--accent);
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+  }
+
+  .testimonial-text {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-style: italic;
+    flex: 1;
+    font-family: var(--sans);
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent-dim);
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent);
+    flex-shrink: 0;
+    font-family: var(--sans);
+  }
+
+  .testimonial-author div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .testimonial-author strong {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    font-family: var(--sans);
+  }
+
+  .testimonial-author span {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-family: var(--sans);
+  }
+
+  /* ===== CTA SECTION ===== */
+  .cta-section {
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg2);
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .cta-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200, 176, 138, 0.12) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .cta-inner h2 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+  }
+
+  .cta-inner > p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    max-width: 480px;
+    font-family: var(--sans);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-item:nth-child(2) {
+      border-right: none;
+    }
+
+    .stat-item:nth-child(3) {
+      border-top: 1px solid var(--border);
+      padding-left: 0;
+    }
+
+    .stat-item:nth-child(4) {
+      border-top: 1px solid var(--border);
+      border-right: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-inner {
+      flex-direction: column;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    .hero-badge {
+      display: none;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stat-item {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+    }
+  }
+</style>
