@@ -3,8 +3,12 @@ const navLinks = [
   { href: '/servizi', label: 'Servizi' },
   { href: '/portfolio', label: 'Portfolio' },
   { href: '/blog', label: 'Blog' },
-  { href: '/integrazioni', label: 'Demo' },
   { href: '/contatti', label: 'Contatti' },
+];
+
+const demoLinks = [
+  { href: '/integrazioni/shopify', label: '🛍️ Shopify Demo' },
+  { href: '/integrazioni/tiktok-shop', label: '🎵 TikTok Shop Demo' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -25,6 +29,16 @@ const currentPath = Astro.url.pathname;
           {link.label}
         </a>
       ))}
+      <div class="nav-dropdown">
+        <button class:list={['nav-link', 'dropdown-trigger', { active: currentPath.startsWith('/integrazioni') }]}>
+          Demo ▾
+        </button>
+        <div class="dropdown-menu">
+          {demoLinks.map((link) => (
+            <a href={link.href} class="dropdown-item">{link.label}</a>
+          ))}
+        </div>
+      </div>
     </nav>
 
     <a href="/contatti" class="nav-cta">Parliamo →</a>
@@ -124,6 +138,47 @@ const currentPath = Astro.url.pathname;
   .nav-cta:hover {
     background: var(--accent-dim);
     border-color: var(--accent);
+  }
+
+  .nav-dropdown {
+    position: relative;
+  }
+  .dropdown-trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--sans);
+  }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #161614;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px;
+    min-width: 200px;
+    z-index: 200;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .nav-dropdown:hover .dropdown-menu {
+    display: flex;
+  }
+  .dropdown-item {
+    padding: 9px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .dropdown-item:hover {
+    background: var(--border);
+    color: var(--text);
   }
 
   @media (max-width: 900px) {

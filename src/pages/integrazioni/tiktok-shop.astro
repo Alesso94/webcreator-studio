@@ -1,0 +1,866 @@
+---
+const products = [
+  { id:1,  name:"Siero Vitamina C 30ml",        price:34.90, original:49.90, category:"Skincare",  rating:4.9, sold:2341, badge:"Flash Sale", live:true,  emoji:"✨", creator:"@glowskin.it" },
+  { id:2,  name:"Crema Idratante SPF 50+",       price:28.00, original:null,  category:"Skincare",  rating:4.7, sold:1876, badge:null,         live:false, emoji:"☀️", creator:"@beautyroma" },
+  { id:3,  name:"Maschera Viso Retinolo Notte",  price:22.50, original:35.00, category:"Skincare",  rating:4.8, sold:987,  badge:"Sold Out -20%",live:false,emoji:"🌙", creator:"@skinlabmilano" },
+  { id:4,  name:"Tonico Acido Ialuronico 150ml", price:19.90, original:null,  category:"Skincare",  rating:4.6, sold:3102, badge:"Bestseller",  live:true,  emoji:"💧", creator:"@glowskin.it" },
+  { id:5,  name:"Rossetto Gloss Plumping",       price:16.90, original:22.00, category:"Beauty",    rating:4.7, sold:5430, badge:"Trending",    live:false, emoji:"💋", creator:"@makeupbylucia" },
+  { id:6,  name:"Foundation HD Skin 24h",        price:31.00, original:42.00, category:"Beauty",    rating:4.5, sold:1234, badge:"Flash Sale",  live:true,  emoji:"💄", creator:"@makeupbylucia" },
+  { id:7,  name:"Mascara Volume XXL",            price:14.90, original:null,  category:"Beauty",    rating:4.8, sold:8721, badge:"#1 in Beauty",live:false, emoji:"👁️", creator:"@beautyroma" },
+  { id:8,  name:"Siero Anti-Crespo Argan",       price:24.90, original:32.00, category:"Hair",      rating:4.6, sold:654,  badge:null,          live:false, emoji:"💆", creator:"@hairgoalss" },
+  { id:9,  name:"Maschera Cheratina Profonda",   price:18.50, original:28.00, category:"Hair",      rating:4.7, sold:1109, badge:"Offerta",     live:false, emoji:"🌿", creator:"@hairgoalss" },
+  { id:10, name:"Collagene Marino Premium",      price:39.90, original:52.00, category:"Wellness",  rating:4.9, sold:4231, badge:"Flash Sale",  live:true,  emoji:"⚡", creator:"@wellnessitalia" },
+  { id:11, name:"Vitamina C + Zinco 60 cps",     price:15.90, original:null,  category:"Wellness",  rating:4.5, sold:2876, badge:null,          live:false, emoji:"🍊", creator:"@wellnessitalia" },
+  { id:12, name:"Omega 3 Ultra Pure 90 cps",     price:27.00, original:35.00, category:"Wellness",  rating:4.7, sold:1543, badge:"Bestseller",  live:false, emoji:"🐟", creator:"@wellnessitalia" },
+];
+
+const categories = ["Tutti", "Skincare", "Beauty", "Hair", "Wellness"];
+
+const categoryGradients: Record<string, string> = {
+  "Skincare": "linear-gradient(135deg, #1a0e2d, #0e141a)",
+  "Beauty":   "linear-gradient(135deg, #2d0e1a, #1a0e14)",
+  "Hair":     "linear-gradient(135deg, #0e2d1a, #0e1a14)",
+  "Wellness": "linear-gradient(135deg, #2d1a0e, #1a1614)",
+};
+
+const categoryIcons: Record<string, string> = {
+  "Skincare": "✨",
+  "Beauty":   "💄",
+  "Hair":     "💆",
+  "Wellness": "⚡",
+};
+---
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo TikTok Shop — WebCreator Studio</title>
+  <meta name="description" content="Demo interattiva di integrazione TikTok Shop: Beauty, Skincare, Hair & Wellness. WebCreator Studio — Web Design & SEO Palermo." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link
+    rel="preload"
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  </noscript>
+</head>
+<body>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+  <span class="demo-tag">DEMO</span>
+  Questa è una simulazione di integrazione TikTok Shop — nessun acquisto reale.
+  <a href="/contatti">Vuoi un negozio così? Parliamone →</a>
+</div>
+
+<!-- HEADER -->
+<header class="tt-header">
+  <div class="tt-header-inner">
+    <a href="/" class="tt-back">← WebCreator Studio</a>
+    <div class="tt-logo">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="#000"/><path d="M19.5 7.5c.8 1.1 2 1.8 3.5 1.9v3c-1.2-.1-2.4-.5-3.5-1.2v5.8c0 3-2.4 5.3-5.3 5.3S9 20 9 17s2.4-5.3 5.3-5.3c.3 0 .6 0 .9.1v3.1c-.3-.1-.6-.1-.9-.1-1.2 0-2.1 1-2.1 2.2s.9 2.1 2.1 2.1 2.1-1 2.1-2.1V7.5h3.1z" fill="white"/></svg>
+      <span>TikTok <strong>Shop</strong></span>
+    </div>
+    <button class="tt-cart-btn" id="cartBtn" aria-label="Apri carrello">
+      🛒 <span class="tt-cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- FLASH SALE BANNER -->
+<div class="flash-banner">
+  <span class="flash-icon">⚡</span>
+  <span>Flash Sale termina tra:</span>
+  <span class="countdown" id="countdown">02:47:33</span>
+  <span class="flash-icon">⚡</span>
+</div>
+
+<!-- MAIN -->
+<main class="tt-main">
+
+  <!-- CATEGORIES -->
+  <div class="tt-categories" id="categories">
+    {categories.map((cat) => (
+      <button
+        class={`tt-cat-btn${cat === 'Tutti' ? ' active' : ''}`}
+        data-cat={cat}
+      >
+        {cat in categoryIcons ? categoryIcons[cat] + ' ' : ''}{cat}
+      </button>
+    ))}
+  </div>
+
+  <!-- LIVE NOW STRIP -->
+  <div class="live-strip">
+    <span class="live-badge-sm">● LIVE</span>
+    <span>3 creator stanno vendendo in diretta adesso</span>
+    <span class="live-viewers">👁 12.4k spettatori</span>
+  </div>
+
+  <!-- PRODUCTS GRID -->
+  <div class="tt-grid" id="productsGrid">
+    {products.map((p) => (
+      <div
+        class="tt-card"
+        data-category={p.category}
+        data-id={p.id}
+        data-name={p.name}
+        data-price={p.price}
+        data-emoji={p.emoji}
+      >
+        <!-- Thumbnail video fake -->
+        <div
+          class="tt-thumb"
+          style={`background: ${categoryGradients[p.category] ?? 'linear-gradient(135deg,#1a1a1a,#0b0b0b)'}`}
+        >
+          <span class="tt-product-emoji">{p.emoji}</span>
+          {p.live && (
+            <span class="live-badge">● LIVE</span>
+          )}
+          <div class="tt-play">▶</div>
+          <button class="tt-wish" data-id={p.id} aria-label="Aggiungi ai preferiti">♡</button>
+        </div>
+
+        <!-- Info -->
+        <div class="tt-info">
+          <p class="tt-creator">{p.creator}</p>
+          <p class="tt-name">{p.name}</p>
+
+          <div class="tt-meta">
+            <span class="tt-stars">{'★'.repeat(Math.floor(p.rating))}{'☆'.repeat(5 - Math.floor(p.rating))}</span>
+            <span class="tt-sold">{p.sold.toLocaleString('it')} venduti</span>
+          </div>
+
+          <div class="tt-pricing">
+            <span class="tt-price">€{p.price.toFixed(2)}</span>
+            {p.original && (
+              <span class="tt-original">€{p.original.toFixed(2)}</span>
+            )}
+            {p.original && (
+              <span class="tt-discount">-{Math.round((1 - p.price / p.original) * 100)}%</span>
+            )}
+          </div>
+
+          {p.badge && (
+            <span class={`tt-badge tt-badge--${p.badge.includes('Flash') ? 'flash' : p.badge.includes('Best') || p.badge.includes('#1') ? 'best' : p.badge.includes('Trend') ? 'trend' : 'sale'}`}>
+              {p.badge}
+            </span>
+          )}
+
+          <button class="tt-add-btn" data-id={p.id}>
+            + Aggiungi
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+</main>
+
+<!-- CART SIDEBAR -->
+<div class="tt-cart-overlay" id="cartOverlay"></div>
+<aside class="tt-cart" id="cartSidebar">
+  <div class="tt-cart-header">
+    <h2>Il tuo carrello</h2>
+    <button class="tt-cart-close" id="cartClose">✕</button>
+  </div>
+  <div class="tt-cart-items" id="cartItems">
+    <p class="tt-cart-empty">Il carrello è vuoto</p>
+  </div>
+  <div class="tt-cart-footer" id="cartFooter" style="display:none">
+    <div class="tt-cart-total">
+      <span>Totale</span>
+      <span id="cartTotal">€0.00</span>
+    </div>
+    <button class="tt-checkout-btn" id="checkoutBtn">Procedi all'acquisto →</button>
+  </div>
+</aside>
+
+<!-- CHECKOUT MODAL -->
+<div class="tt-modal-overlay" id="modalOverlay" style="display:none">
+  <div class="tt-modal">
+    <div class="tt-modal-icon">🛍️</div>
+    <h3>Questa è una demo!</h3>
+    <p>In un negozio TikTok Shop reale, da qui si procederebbe al pagamento sicuro integrato con TikTok Pay.</p>
+    <p>Vuoi integrare TikTok Shop nel tuo e-commerce?</p>
+    <a href="/contatti" class="tt-modal-cta">Parliamone →</a>
+    <button class="tt-modal-close" id="modalClose">Chiudi</button>
+  </div>
+</div>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #0a0a0a;
+    color: #f0f0f0;
+    min-height: 100vh;
+  }
+
+  /* DEMO BANNER */
+  .demo-banner {
+    background: linear-gradient(90deg, #ff2d55, #ff6b35);
+    color: white;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .demo-tag {
+    background: white;
+    color: #ff2d55;
+    font-weight: 700;
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+  .demo-banner a {
+    color: white;
+    font-weight: 600;
+    text-decoration: underline;
+    white-space: nowrap;
+  }
+
+  /* HEADER */
+  .tt-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid #1f1f1f;
+  }
+  .tt-header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .tt-back {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.82rem;
+    transition: color 0.2s;
+  }
+  .tt-back:hover { color: #f0f0f0; }
+  .tt-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+    font-weight: 300;
+  }
+  .tt-logo strong { font-weight: 600; }
+  .tt-cart-btn {
+    background: none;
+    border: 1px solid #2a2a2a;
+    color: #f0f0f0;
+    padding: 6px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: border-color 0.2s;
+  }
+  .tt-cart-btn:hover { border-color: #ff2d55; }
+  .tt-cart-count {
+    background: #ff2d55;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  /* FLASH BANNER */
+  .flash-banner {
+    background: #111;
+    border-bottom: 1px solid #1f1f1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px 16px;
+    font-size: 0.82rem;
+    color: #ccc;
+  }
+  .flash-icon { color: #ff2d55; }
+  .countdown {
+    font-weight: 700;
+    color: #ff2d55;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.05em;
+  }
+
+  /* MAIN */
+  .tt-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+  }
+
+  /* CATEGORIES */
+  .tt-categories {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+    margin-bottom: 16px;
+  }
+  .tt-categories::-webkit-scrollbar { display: none; }
+  .tt-cat-btn {
+    flex-shrink: 0;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    color: #aaa;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .tt-cat-btn:hover { border-color: #ff2d55; color: #f0f0f0; }
+  .tt-cat-btn.active {
+    background: #ff2d55;
+    border-color: #ff2d55;
+    color: white;
+    font-weight: 600;
+  }
+
+  /* LIVE STRIP */
+  .live-strip {
+    background: linear-gradient(90deg, #1a0010, #0a0a0a);
+    border: 1px solid #2a0015;
+    border-radius: 8px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: #ccc;
+    margin-bottom: 24px;
+  }
+  .live-badge-sm {
+    color: #ff2d55;
+    font-weight: 700;
+    font-size: 0.78rem;
+    animation: pulse 1.5s infinite;
+  }
+  .live-viewers { margin-left: auto; color: #888; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* GRID */
+  .tt-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+
+  /* CARD */
+  .tt-card {
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .tt-card:hover {
+    transform: translateY(-3px);
+    border-color: #2a2a2a;
+  }
+
+  /* THUMBNAIL */
+  .tt-thumb {
+    position: relative;
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .tt-product-emoji {
+    font-size: 4rem;
+    filter: drop-shadow(0 4px 20px rgba(0,0,0,0.6));
+  }
+  .live-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #ff2d55;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    animation: pulse 1.5s infinite;
+  }
+  .tt-play {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 28px;
+    height: 28px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: white;
+  }
+  .tt-wish {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: #f0f0f0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .tt-wish:hover, .tt-wish.liked { color: #ff2d55; }
+
+  /* INFO */
+  .tt-info { padding: 12px; }
+  .tt-creator {
+    font-size: 0.72rem;
+    color: #ff2d55;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .tt-name {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: #f0f0f0;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .tt-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .tt-stars { color: #ffd700; font-size: 0.72rem; }
+  .tt-sold { font-size: 0.72rem; color: #666; }
+
+  .tt-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .tt-price { font-size: 1.1rem; font-weight: 700; color: #ff2d55; }
+  .tt-original { font-size: 0.78rem; color: #555; text-decoration: line-through; }
+  .tt-discount {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: white;
+    background: #ff2d55;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  .tt-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .tt-badge--flash { background: #1a0800; color: #ff6b35; border: 1px solid #ff6b35; }
+  .tt-badge--best  { background: #001a0a; color: #00c853; border: 1px solid #00c853; }
+  .tt-badge--trend { background: #0a001a; color: #b060ff; border: 1px solid #b060ff; }
+  .tt-badge--sale  { background: #1a0010; color: #ff2d55; border: 1px solid #ff2d55; }
+
+  .tt-add-btn {
+    width: 100%;
+    background: #ff2d55;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 9px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .tt-add-btn:hover { background: #e0253d; }
+  .tt-add-btn:active { transform: scale(0.97); }
+  .tt-add-btn.added { background: #00c853; }
+
+  /* CART SIDEBAR */
+  .tt-cart-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+  }
+  .tt-cart-overlay.open { display: block; }
+  .tt-cart {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: 360px;
+    background: #111;
+    border-left: 1px solid #1f1f1f;
+    z-index: 201;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    display: flex;
+    flex-direction: column;
+  }
+  .tt-cart.open { transform: translateX(0); }
+  .tt-cart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #1f1f1f;
+  }
+  .tt-cart-header h2 { font-size: 1rem; font-weight: 600; }
+  .tt-cart-close {
+    background: none; border: none;
+    color: #888; font-size: 1.1rem;
+    cursor: pointer; transition: color 0.2s;
+  }
+  .tt-cart-close:hover { color: #f0f0f0; }
+  .tt-cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tt-cart-empty { color: #555; font-size: 0.85rem; text-align: center; margin-top: 40px; }
+  .tt-cart-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #1a1a1a;
+    border-radius: 8px;
+    padding: 10px;
+  }
+  .tt-cart-item-emoji { font-size: 1.8rem; flex-shrink: 0; }
+  .tt-cart-item-info { flex: 1; min-width: 0; }
+  .tt-cart-item-name { font-size: 0.82rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tt-cart-item-price { font-size: 0.9rem; color: #ff2d55; font-weight: 700; margin-top: 2px; }
+  .tt-cart-item-qty {
+    display: flex; align-items: center; gap: 8px;
+    margin-top: 6px;
+  }
+  .tt-qty-btn {
+    background: #2a2a2a; border: none;
+    color: #f0f0f0; width: 22px; height: 22px;
+    border-radius: 4px; cursor: pointer;
+    font-size: 0.9rem; font-family: 'DM Sans', sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .tt-qty-btn:hover { background: #ff2d55; }
+  .tt-qty-val { font-size: 0.85rem; font-weight: 600; min-width: 16px; text-align: center; }
+  .tt-cart-item-remove {
+    background: none; border: none;
+    color: #444; font-size: 1.1rem;
+    cursor: pointer; transition: color 0.2s;
+    flex-shrink: 0;
+  }
+  .tt-cart-item-remove:hover { color: #ff2d55; }
+  .tt-cart-footer {
+    padding: 16px 20px;
+    border-top: 1px solid #1f1f1f;
+  }
+  .tt-cart-total {
+    display: flex; justify-content: space-between;
+    font-size: 0.95rem; font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .tt-checkout-btn {
+    width: 100%;
+    background: #ff2d55;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .tt-checkout-btn:hover { background: #e0253d; }
+
+  /* MODAL */
+  .tt-modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .tt-modal {
+    background: #161616;
+    border: 1px solid #2a2a2a;
+    border-radius: 16px;
+    padding: 36px 28px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+  }
+  .tt-modal-icon { font-size: 3rem; margin-bottom: 16px; }
+  .tt-modal h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; }
+  .tt-modal p { color: #aaa; font-size: 0.9rem; line-height: 1.6; margin-bottom: 10px; }
+  .tt-modal-cta {
+    display: inline-block;
+    background: #ff2d55;
+    color: white;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-top: 8px;
+    transition: background 0.2s;
+  }
+  .tt-modal-cta:hover { background: #e0253d; }
+  .tt-modal-close {
+    display: block;
+    margin: 14px auto 0;
+    background: none;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: color 0.2s;
+  }
+  .tt-modal-close:hover { color: #aaa; }
+
+  @media (max-width: 600px) {
+    .tt-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .tt-cart { width: 100%; }
+    .flash-banner { font-size: 0.75rem; }
+  }
+</style>
+
+<script>
+  const CART_KEY = 'tiktok-cart-v1';
+
+  interface CartItem {
+    id: number;
+    name: string;
+    price: number;
+    emoji: string;
+    qty: number;
+  }
+
+  let cart: CartItem[] = JSON.parse(localStorage.getItem(CART_KEY) || '[]');
+
+  // --- COUNTDOWN ---
+  function initCountdown() {
+    let stored = localStorage.getItem('tt-flash-end');
+    let endTime: number;
+    if (stored) {
+      endTime = parseInt(stored);
+    } else {
+      endTime = Date.now() + (2 * 3600 + 47 * 60 + 33) * 1000;
+      localStorage.setItem('tt-flash-end', String(endTime));
+    }
+    const el = document.getElementById('countdown')!;
+    setInterval(() => {
+      const diff = Math.max(0, endTime - Date.now());
+      const h = Math.floor(diff / 3600000).toString().padStart(2, '0');
+      const m = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+      const s = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+      el.textContent = `${h}:${m}:${s}`;
+    }, 1000);
+  }
+
+  // --- CART ---
+  function saveCart() {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  }
+
+  function updateCartUI() {
+    const count = cart.reduce((a, i) => a + i.qty, 0);
+    document.getElementById('cartCount')!.textContent = String(count);
+
+    const itemsEl = document.getElementById('cartItems')!;
+    const footerEl = document.getElementById('cartFooter')!;
+
+    if (cart.length === 0) {
+      itemsEl.innerHTML = '<p class="tt-cart-empty">Il carrello è vuoto</p>';
+      footerEl.style.display = 'none';
+      return;
+    }
+
+    footerEl.style.display = 'block';
+    const total = cart.reduce((a, i) => a + i.price * i.qty, 0);
+    document.getElementById('cartTotal')!.textContent = `€${total.toFixed(2)}`;
+
+    itemsEl.innerHTML = cart.map(item => `
+      <div class="tt-cart-item">
+        <span class="tt-cart-item-emoji">${item.emoji}</span>
+        <div class="tt-cart-item-info">
+          <div class="tt-cart-item-name">${item.name}</div>
+          <div class="tt-cart-item-price">€${item.price.toFixed(2)}</div>
+          <div class="tt-cart-item-qty">
+            <button class="tt-qty-btn" data-action="dec" data-id="${item.id}">−</button>
+            <span class="tt-qty-val">${item.qty}</span>
+            <button class="tt-qty-btn" data-action="inc" data-id="${item.id}">+</button>
+          </div>
+        </div>
+        <button class="tt-cart-item-remove" data-id="${item.id}">✕</button>
+      </div>
+    `).join('');
+
+    itemsEl.querySelectorAll('.tt-qty-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = parseInt((btn as HTMLElement).dataset.id!);
+        const action = (btn as HTMLElement).dataset.action!;
+        const idx = cart.findIndex(i => i.id === id);
+        if (idx === -1) return;
+        if (action === 'inc') cart[idx].qty++;
+        else cart[idx].qty = Math.max(0, cart[idx].qty - 1);
+        if (cart[idx].qty === 0) cart.splice(idx, 1);
+        saveCart();
+        updateCartUI();
+      });
+    });
+
+    itemsEl.querySelectorAll('.tt-cart-item-remove').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = parseInt((btn as HTMLElement).dataset.id!);
+        cart = cart.filter(i => i.id !== id);
+        saveCart();
+        updateCartUI();
+      });
+    });
+  }
+
+  function openCart() {
+    document.getElementById('cartSidebar')!.classList.add('open');
+    document.getElementById('cartOverlay')!.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCart() {
+    document.getElementById('cartSidebar')!.classList.remove('open');
+    document.getElementById('cartOverlay')!.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // --- CATEGORIES ---
+  function filterProducts(cat: string) {
+    document.querySelectorAll('.tt-card').forEach(card => {
+      const el = card as HTMLElement;
+      el.style.display = (cat === 'Tutti' || el.dataset.category === cat) ? '' : 'none';
+    });
+  }
+
+  // --- INIT ---
+  document.addEventListener('DOMContentLoaded', () => {
+    initCountdown();
+    updateCartUI();
+
+    // Category buttons
+    document.getElementById('categories')!.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.tt-cat-btn') as HTMLElement | null;
+      if (!btn) return;
+      document.querySelectorAll('.tt-cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterProducts(btn.dataset.cat!);
+    });
+
+    // Add to cart
+    document.getElementById('productsGrid')!.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.tt-add-btn') as HTMLElement | null;
+      if (!btn) return;
+      const card = btn.closest('.tt-card') as HTMLElement;
+      const id = parseInt(card.dataset.id!);
+      const name = card.dataset.name!;
+      const price = parseFloat(card.dataset.price!);
+      const emoji = card.dataset.emoji!;
+
+      const existing = cart.find(i => i.id === id);
+      if (existing) existing.qty++;
+      else cart.push({ id, name, price, emoji, qty: 1 });
+      saveCart();
+      updateCartUI();
+
+      btn.textContent = '✓ Aggiunto!';
+      btn.classList.add('added');
+      setTimeout(() => {
+        btn.textContent = '+ Aggiungi';
+        btn.classList.remove('added');
+      }, 1500);
+    });
+
+    // Wishlist
+    document.getElementById('productsGrid')!.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest('.tt-wish') as HTMLElement | null;
+      if (!btn) return;
+      btn.classList.toggle('liked');
+      btn.textContent = btn.classList.contains('liked') ? '♥' : '♡';
+    });
+
+    // Cart open/close
+    document.getElementById('cartBtn')!.addEventListener('click', openCart);
+    document.getElementById('cartClose')!.addEventListener('click', closeCart);
+    document.getElementById('cartOverlay')!.addEventListener('click', closeCart);
+
+    // Checkout modal
+    document.getElementById('checkoutBtn')!.addEventListener('click', () => {
+      closeCart();
+      document.getElementById('modalOverlay')!.style.display = 'flex';
+    });
+    document.getElementById('modalClose')!.addEventListener('click', () => {
+      document.getElementById('modalOverlay')!.style.display = 'none';
+    });
+    document.getElementById('modalOverlay')!.addEventListener('click', (e) => {
+      if (e.target === document.getElementById('modalOverlay')) {
+        document.getElementById('modalOverlay')!.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
