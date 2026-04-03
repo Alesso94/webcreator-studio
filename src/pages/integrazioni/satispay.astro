@@ -25,19 +25,19 @@ const products = [
 
   <style>
     :root {
-      --bg:           #0a0a0a;
-      --bg2:          #131313;
-      --bg3:          #1c1c1c;
-      --border:       rgba(255,255,255,0.08);
-      --border-strong:rgba(255,255,255,0.14);
-      --text:         #f0f0f0;
-      --text-muted:   #888888;
-      --text-subtle:  #505050;
+      --bg:           #0c0e14;
+      --bg2:          #13161f;
+      --bg3:          #1b1e2b;
+      --border:       rgba(255,255,255,0.07);
+      --border-strong:rgba(255,255,255,0.13);
+      --text:         #e8eaf2;
+      --text-muted:   #7a7f99;
+      --text-subtle:  #484d66;
       --red:          #e30613;
-      --red-dim:      rgba(227,6,19,0.12);
+      --red-dim:      rgba(227,6,19,0.10);
       --red-hover:    #c8000f;
       --green:        #22c55e;
-      --green-dim:    rgba(34,197,94,0.12);
+      --green-dim:    rgba(34,197,94,0.10);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -51,8 +51,8 @@ const products = [
 
     /* ===== DEMO BANNER ===== */
     .demo-banner {
-      background: var(--red-dim);
-      border-bottom: 1px solid rgba(227,6,19,0.25);
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
       text-align: center;
       padding: 10px 16px;
       font-size: 0.82rem;
@@ -172,7 +172,7 @@ const products = [
       font-weight: 600;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: var(--red);
+      color: var(--text-muted);
       margin-bottom: 12px;
     }
     .section-title {
@@ -213,14 +213,16 @@ const products = [
     }
     .product-badge {
       display: inline-block;
-      background: var(--red-dim);
-      color: var(--red);
-      font-size: 0.68rem;
+      align-self: flex-start;
+      background: rgba(255,255,255,0.06);
+      color: var(--text-muted);
+      font-size: 0.65rem;
       font-weight: 600;
-      letter-spacing: .06em;
+      letter-spacing: .07em;
       text-transform: uppercase;
       padding: 2px 8px;
-      border-radius: 4px;
+      border-radius: 20px;
+      border: 1px solid var(--border-strong);
     }
     .product-name {
       font-size: 0.92rem;
