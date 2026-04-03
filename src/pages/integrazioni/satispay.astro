@@ -1,0 +1,1111 @@
+---
+const products = [
+  { id:1, name:"Olio EVO DOP Sicilia 500ml",     price:18.50, category:"Alimentari", emoji:"🫒", badge:"Bio" },
+  { id:2, name:"Pesto di Pistacchio Bronte 180g", price:12.90, category:"Alimentari", emoji:"🌿", badge:"Artigianale" },
+  { id:3, name:"Candela Profumata al Bergamotto", price:24.00, category:"Casa",       emoji:"🕯️", badge:"Handmade" },
+  { id:4, name:"Collana Argento 925 Fatta a Mano",price:49.00, category:"Gioielli",   emoji:"💍", badge:"Limited" },
+  { id:5, name:"Vino Nero d'Avola DOC 2022",      price:14.00, category:"Alimentari", emoji:"🍷", badge:null },
+  { id:6, name:"Sapone Naturale al Latte d'Asina",price: 9.90, category:"Beauty",     emoji:"🧼", badge:"Vegan" },
+];
+---
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo Pagamento Satispay — WebCreator Studio</title>
+  <meta name="description" content="Demo interattiva di integrazione Satispay per e-commerce. Scopri come WebCreator Studio integra Satispay nel tuo negozio online." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" /></noscript>
+
+  <style>
+    :root {
+      --bg:           #0b0b0a;
+      --bg2:          #131312;
+      --bg3:          #1c1c1a;
+      --border:       rgba(255,255,255,0.08);
+      --border-strong:rgba(255,255,255,0.14);
+      --text:         #f0ede6;
+      --text-muted:   #8a8880;
+      --text-subtle:  #555451;
+      --red:          #e30613;
+      --red-dim:      rgba(227,6,19,0.12);
+      --red-hover:    #c8000f;
+      --green:        #22c55e;
+      --green-dim:    rgba(34,197,94,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ===== DEMO BANNER ===== */
+    .demo-banner {
+      background: var(--red-dim);
+      border-bottom: 1px solid rgba(227,6,19,0.25);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .demo-tag {
+      background: var(--red);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .demo-banner a {
+      color: var(--red);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .demo-banner a:hover { text-decoration: underline; }
+
+    /* ===== HEADER ===== */
+    .sati-header {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .sati-header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .sati-back {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color .2s;
+      white-space: nowrap;
+    }
+    .sati-back:hover { color: var(--text); }
+
+    .sati-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .sati-logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--red);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .sati-cart-btn {
+      background: var(--bg3);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: border-color .2s;
+      white-space: nowrap;
+    }
+    .sati-cart-btn:hover { border-color: var(--red); }
+    .cart-count {
+      background: var(--red);
+      color: #fff;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== MAIN LAYOUT ===== */
+    .main-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .main-wrap { grid-template-columns: 1fr; }
+    }
+
+    /* ===== PRODUCTS ===== */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .product-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color .2s, transform .2s;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+    .product-card.in-cart {
+      border-color: var(--red);
+      background: color-mix(in srgb, var(--bg2) 94%, var(--red) 6%);
+    }
+
+    .product-emoji {
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+    .product-badge {
+      display: inline-block;
+      background: var(--red-dim);
+      color: var(--red);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .product-name {
+      font-size: 0.92rem;
+      font-weight: 500;
+      line-height: 1.4;
+      flex: 1;
+    }
+    .product-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+    .product-add-btn {
+      background: var(--bg3);
+      border: 1px solid var(--border-strong);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 8px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: background .2s, border-color .2s, color .2s;
+      width: 100%;
+    }
+    .product-add-btn:hover {
+      background: var(--red-dim);
+      border-color: var(--red);
+      color: var(--red);
+    }
+    .product-card.in-cart .product-add-btn {
+      background: var(--red-dim);
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    /* ===== CART SIDEBAR ===== */
+    .cart-sidebar {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      position: sticky;
+      top: 76px;
+    }
+    .cart-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cart-empty {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      text-align: center;
+      padding: 24px 0;
+    }
+    .cart-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.83rem;
+    }
+    .cart-item-name {
+      flex: 1;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+    .cart-item-price {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: var(--text-subtle);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0 4px;
+      transition: color .2s;
+    }
+    .cart-item-remove:hover { color: var(--red); }
+
+    .cart-divider {
+      border: none;
+      border-top: 1px solid var(--border-strong);
+      margin: 12px 0;
+    }
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 20px;
+    }
+
+    .satispay-btn {
+      width: 100%;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background .2s, transform .15s;
+    }
+    .satispay-btn:hover:not(:disabled) {
+      background: var(--red-hover);
+      transform: translateY(-1px);
+    }
+    .satispay-btn:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+    .satispay-btn svg { flex-shrink: 0; }
+
+    .cart-note {
+      font-size: 0.72rem;
+      color: var(--text-subtle);
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    /* ===== MODAL ===== */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.75);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      background: var(--bg2);
+      border: 1px solid var(--border-strong);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 420px;
+      overflow: hidden;
+      animation: modalIn .25s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(16px) scale(.97); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    /* --- step: payment --- */
+    .modal-header {
+      background: var(--red);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .modal-header-logo {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .modal-header-text h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .modal-header-text p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,.7);
+      margin-top: 2px;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    /* Tabs desktop/mobile */
+    .payment-tabs {
+      display: flex;
+      background: var(--bg3);
+      border-radius: 10px;
+      padding: 4px;
+      gap: 4px;
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      flex: 1;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      border-radius: 7px;
+      padding: 8px 12px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .tab-btn.active {
+      background: var(--bg2);
+      color: var(--text);
+      box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    }
+
+    /* QR panel */
+    .qr-panel { text-align: center; }
+    .qr-wrap {
+      background: #fff;
+      border-radius: 14px;
+      padding: 16px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+    .qr-wrap svg { display: block; }
+
+    .amount-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .amount-value {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .timer-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .timer-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .3; }
+    }
+    #timer { font-weight: 600; color: var(--text); }
+
+    /* Mobile panel */
+    .mobile-panel { text-align: center; }
+    .phone-mockup {
+      display: inline-block;
+      background: var(--bg3);
+      border: 2px solid var(--border-strong);
+      border-radius: 28px;
+      padding: 12px;
+      margin-bottom: 16px;
+      width: 180px;
+    }
+    .phone-screen {
+      background: #fff;
+      border-radius: 18px;
+      padding: 16px 12px;
+      text-align: center;
+    }
+    .phone-sati-logo {
+      font-size: 1.6rem;
+      margin-bottom: 4px;
+    }
+    .phone-amount {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #111;
+    }
+    .phone-merchant {
+      font-size: 0.68rem;
+      color: #888;
+      margin: 2px 0 10px;
+    }
+    .phone-confirm-btn {
+      background: var(--red);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 7px 12px;
+      width: 100%;
+    }
+
+    .deeplink-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 24px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s;
+      margin-bottom: 12px;
+    }
+    .deeplink-btn:hover { background: var(--red-hover); }
+
+    .modal-simulate-btn {
+      width: 100%;
+      background: none;
+      border: 1px solid var(--border-strong);
+      color: var(--text-muted);
+      border-radius: 10px;
+      padding: 11px;
+      font-size: 0.83rem;
+      cursor: pointer;
+      transition: border-color .2s, color .2s;
+      margin-top: 8px;
+    }
+    .modal-simulate-btn:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .modal-close-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text-subtle);
+      font-size: 0.78rem;
+      cursor: pointer;
+      margin-top: 10px;
+      padding: 6px;
+      transition: color .2s;
+    }
+    .modal-close-btn:hover { color: var(--text-muted); }
+
+    /* --- step: success --- */
+    .success-step {
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--green-dim);
+      border: 2px solid var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+    }
+    .success-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .success-sub {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .success-detail {
+      background: var(--bg3);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: left;
+      font-size: 0.82rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .success-row {
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+    }
+    .success-row span:last-child { color: var(--text); font-weight: 500; }
+    .success-close-btn {
+      width: 100%;
+      background: var(--red);
+      border: none;
+      color: #fff;
+      border-radius: 12px;
+      padding: 13px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .success-close-btn:hover { background: var(--red-hover); }
+
+    /* ===== INFO STRIP ===== */
+    .info-strip {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+    }
+    .info-strip-inner {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+    }
+    .info-item { display: flex; align-items: flex-start; gap: 12px; }
+    .info-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .info-text h3 { font-size: 0.875rem; font-weight: 600; margin-bottom: 4px; }
+    .info-text p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+    .cta-strip {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .cta-strip h2 { font-size: 1.3rem; font-weight: 600; margin-bottom: 8px; }
+    .cta-strip p { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 20px; }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 13px 28px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: background .2s;
+    }
+    .cta-btn:hover { background: var(--red-hover); }
+  </style>
+</head>
+<body>
+
+<!-- DEMO BANNER -->
+<div class="demo-banner">
+  <span class="demo-tag">DEMO</span>
+  Simulazione di integrazione Satispay — nessun pagamento reale viene effettuato.
+  <a href="/contatti">Vuoi integrarlo nel tuo shop? →</a>
+</div>
+
+<!-- HEADER -->
+<header class="sati-header">
+  <div class="sati-header-inner">
+    <a href="/integrazioni" class="sati-back">← Integrazioni</a>
+    <div class="sati-logo">
+      <div class="sati-logo-icon">💸</div>
+      <span>Satispay <strong>Demo</strong></span>
+    </div>
+    <button class="sati-cart-btn" id="cartToggleBtn" aria-label="Carrello">
+      🛒 Carrello
+      <span class="cart-count" id="headerCartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="main-wrap">
+
+    <!-- Products -->
+    <div class="products-col">
+      <div class="section-label">Shop Demo</div>
+      <h1 class="section-title">Prodotti artigianali italiani</h1>
+      <div class="products-grid" id="productsGrid">
+        {products.map(p => (
+          <div class="product-card" id={`card-${p.id}`} data-id={p.id} data-name={p.name} data-price={p.price}>
+            <div class="product-emoji">{p.emoji}</div>
+            {p.badge && <span class="product-badge">{p.badge}</span>}
+            <div class="product-name">{p.name}</div>
+            <div class="product-price">€{p.price.toFixed(2)}</div>
+            <button class="product-add-btn" data-id={p.id}>+ Aggiungi al carrello</button>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <aside class="cart-sidebar" id="cartSidebar">
+      <div class="cart-title">
+        <span>Carrello</span>
+        <span class="cart-count" id="sidebarCartCount">0</span>
+      </div>
+      <div id="cartEmpty" class="cart-empty">Nessun prodotto nel carrello</div>
+      <div id="cartItems" class="cart-items" style="display:none"></div>
+      <div id="cartFooter" style="display:none">
+        <hr class="cart-divider" />
+        <div class="cart-total">
+          <span>Totale</span>
+          <span id="cartTotal">€0,00</span>
+        </div>
+        <button class="satispay-btn" id="payBtn">
+          <!-- Satispay wordmark SVG simplified -->
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="10" cy="10" r="10" fill="white" fill-opacity="0.2"/>
+            <path d="M10 4C6.686 4 4 6.686 4 10C4 13.314 6.686 16 10 16C13.314 16 16 13.314 16 10C16 6.686 13.314 4 10 4ZM10.8 13.2H9.2V11.6H10.8V13.2ZM10.8 10H9.2V6.8H10.8V10Z" fill="white"/>
+          </svg>
+          Paga con Satispay
+        </button>
+        <p class="cart-note">Zero commissioni per il cliente · Pagamento istantaneo</p>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Info strip -->
+  <div class="info-strip">
+    <div class="info-strip-inner">
+      <div class="info-item">
+        <div class="info-icon">💸</div>
+        <div class="info-text">
+          <h3>Zero commissioni</h3>
+          <p>I clienti non pagano nulla in più. Il merchant paga solo €0,20 per ordini sopra €10.</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">⚡</div>
+        <div class="info-text">
+          <h3>Pagamento istantaneo</h3>
+          <p>Il bonifico arriva in tempo reale sul conto Satispay Business del merchant.</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">📱</div>
+        <div class="info-text">
+          <h3>QR code & deep link</h3>
+          <p>Desktop: scansiona il QR. Mobile: apre direttamente l'app Satispay.</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">🔌</div>
+        <div class="info-text">
+          <h3>API REST + webhook</h3>
+          <p>Integrazione nativa con Next.js, WooCommerce, Shopify e qualsiasi stack custom.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <h2>Vuoi Satispay nel tuo e-commerce?</h2>
+    <p>Ti integriamo Satispay in qualsiasi piattaforma — WooCommerce, Shopify o custom.</p>
+    <a href="/contatti" class="cta-btn">Parliamo del tuo progetto →</a>
+  </div>
+</main>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-label="Pagamento Satispay">
+  <div class="modal" id="modal">
+
+    <!-- Step 1: Payment -->
+    <div id="stepPayment">
+      <div class="modal-header">
+        <div class="modal-header-logo">💸</div>
+        <div class="modal-header-text">
+          <h2>Paga con Satispay</h2>
+          <p>Shop Demo — webcreator-studio.it</p>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="payment-tabs">
+          <button class="tab-btn active" id="tabQR" data-tab="qr">💻 QR Code</button>
+          <button class="tab-btn" id="tabMobile" data-tab="mobile">📱 App Mobile</button>
+        </div>
+
+        <!-- QR Panel -->
+        <div id="panelQR" class="qr-panel">
+          <div class="amount-label">Importo da pagare</div>
+          <div class="amount-value" id="modalAmount">€0,00</div>
+          <div class="qr-wrap">
+            <!-- Simulated QR pattern -->
+            <svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+              <!-- QR corner squares -->
+              <rect x="8" y="8" width="44" height="44" rx="4" fill="#e30613"/>
+              <rect x="14" y="14" width="32" height="32" rx="2" fill="white"/>
+              <rect x="20" y="20" width="20" height="20" rx="1" fill="#e30613"/>
+
+              <rect x="108" y="8" width="44" height="44" rx="4" fill="#e30613"/>
+              <rect x="114" y="14" width="32" height="32" rx="2" fill="white"/>
+              <rect x="120" y="20" width="20" height="20" rx="1" fill="#e30613"/>
+
+              <rect x="8" y="108" width="44" height="44" rx="4" fill="#e30613"/>
+              <rect x="14" y="114" width="32" height="32" rx="2" fill="white"/>
+              <rect x="20" y="120" width="20" height="20" rx="1" fill="#e30613"/>
+
+              <!-- QR data modules (simulated) -->
+              <g fill="#e30613" opacity="0.85">
+                <rect x="60" y="8" width="8" height="8"/><rect x="72" y="8" width="8" height="8"/><rect x="84" y="8" width="8" height="8"/>
+                <rect x="60" y="20" width="8" height="8"/><rect x="84" y="20" width="8" height="8"/>
+                <rect x="60" y="32" width="8" height="8"/><rect x="72" y="32" width="8" height="8"/>
+                <rect x="8" y="60" width="8" height="8"/><rect x="20" y="60" width="8" height="8"/><rect x="44" y="60" width="8" height="8"/>
+                <rect x="8" y="72" width="8" height="8"/><rect x="32" y="72" width="8" height="8"/>
+                <rect x="20" y="84" width="8" height="8"/><rect x="44" y="84" width="8" height="8"/>
+                <rect x="60" y="60" width="8" height="8"/><rect x="72" y="60" width="8" height="8"/><rect x="84" y="60" width="8" height="8"/><rect x="96" y="60" width="8" height="8"/>
+                <rect x="60" y="72" width="8" height="8"/><rect x="84" y="72" width="8" height="8"/>
+                <rect x="72" y="84" width="8" height="8"/><rect x="96" y="84" width="8" height="8"/>
+                <rect x="108" y="60" width="8" height="8"/><rect x="132" y="60" width="8" height="8"/><rect x="144" y="60" width="8" height="8"/>
+                <rect x="120" y="72" width="8" height="8"/><rect x="144" y="72" width="8" height="8"/>
+                <rect x="108" y="84" width="8" height="8"/><rect x="132" y="84" width="8" height="8"/>
+                <rect x="8" y="108" width="8" height="8" opacity="0"/><rect x="60" y="108" width="8" height="8"/><rect x="72" y="108" width="8" height="8"/>
+                <rect x="84" y="108" width="8" height="8"/><rect x="108" y="108" width="8" height="8"/><rect x="132" y="108" width="8" height="8"/>
+                <rect x="60" y="120" width="8" height="8"/><rect x="84" y="120" width="8" height="8"/><rect x="96" y="120" width="8" height="8"/>
+                <rect x="120" y="120" width="8" height="8"/><rect x="144" y="120" width="8" height="8"/>
+                <rect x="60" y="132" width="8" height="8"/><rect x="72" y="132" width="8" height="8"/><rect x="96" y="132" width="8" height="8"/>
+                <rect x="108" y="132" width="8" height="8"/><rect x="132" y="132" width="8" height="8"/>
+                <rect x="60" y="144" width="8" height="8"/><rect x="84" y="144" width="8" height="8"/><rect x="120" y="144" width="8" height="8"/><rect x="144" y="144" width="8" height="8"/>
+              </g>
+              <!-- Center logo -->
+              <rect x="66" y="66" width="28" height="28" rx="4" fill="white"/>
+              <rect x="70" y="70" width="20" height="20" rx="2" fill="#e30613"/>
+              <rect x="76" y="74" width="8" height="2" fill="white"/>
+              <rect x="76" y="78" width="8" height="8" fill="white"/>
+            </svg>
+          </div>
+          <div class="timer-wrap">
+            <div class="timer-dot"></div>
+            <span>Il codice scade tra <span id="timer">02:00</span></span>
+          </div>
+          <button class="modal-simulate-btn" id="simulateBtn">✓ Simula pagamento confermato</button>
+        </div>
+
+        <!-- Mobile Panel -->
+        <div id="panelMobile" class="mobile-panel" style="display:none">
+          <div class="amount-label">Importo da pagare</div>
+          <div class="amount-value" id="modalAmountMobile">€0,00</div>
+          <div class="phone-mockup">
+            <div class="phone-screen">
+              <div class="phone-sati-logo">💸</div>
+              <div class="phone-amount" id="phoneAmount">€0,00</div>
+              <div class="phone-merchant">Shop Demo</div>
+              <div class="phone-confirm-btn">Conferma ✓</div>
+            </div>
+          </div>
+          <br/>
+          <a href="#" class="deeplink-btn" id="deeplinkBtn" onclick="return false;">
+            📱 Apri l'app Satispay
+          </a>
+          <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:16px;">
+            Il deep link aprirebbe l'app Satispay con il pagamento precaricato.
+          </p>
+          <button class="modal-simulate-btn" id="simulateBtnMobile">✓ Simula pagamento confermato</button>
+        </div>
+
+        <button class="modal-close-btn" id="modalCloseBtn">Annulla pagamento</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Success -->
+    <div id="stepSuccess" style="display:none">
+      <div class="success-step">
+        <div class="success-icon">✓</div>
+        <div class="success-title">Pagamento ricevuto!</div>
+        <div class="success-sub">
+          Il pagamento è stato confermato istantaneamente.<br/>
+          I fondi sono già disponibili sul conto Satispay Business.
+        </div>
+        <div class="success-detail">
+          <div class="success-row"><span>Importo</span><span id="successAmount">€0,00</span></div>
+          <div class="success-row"><span>Metodo</span><span>Satispay</span></div>
+          <div class="success-row"><span>Stato</span><span style="color:var(--green)">✓ Confermato</span></div>
+          <div class="success-row"><span>Commissione</span><span>€0,20</span></div>
+          <div class="success-row"><span>Riferimento</span><span id="successRef">STW-000000</span></div>
+        </div>
+        <button class="success-close-btn" id="successCloseBtn">Chiudi e svuota carrello</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ===== STATE =====
+  const cart = new Map(); // id -> {name, price, qty}
+  let timerInterval = null;
+  let timerSeconds = 120;
+
+  // ===== REFS =====
+  const productsGrid     = document.getElementById('productsGrid');
+  const cartItems        = document.getElementById('cartItems');
+  const cartEmpty        = document.getElementById('cartEmpty');
+  const cartFooter       = document.getElementById('cartFooter');
+  const cartTotal        = document.getElementById('cartTotal');
+  const headerCartCount  = document.getElementById('headerCartCount');
+  const sidebarCartCount = document.getElementById('sidebarCartCount');
+  const payBtn           = document.getElementById('payBtn');
+  const modalBackdrop    = document.getElementById('modalBackdrop');
+  const modalAmount      = document.getElementById('modalAmount');
+  const modalAmountMobile= document.getElementById('modalAmountMobile');
+  const phoneAmount      = document.getElementById('phoneAmount');
+  const successAmount    = document.getElementById('successAmount');
+  const successRef       = document.getElementById('successRef');
+  const timerEl          = document.getElementById('timer');
+  const stepPayment      = document.getElementById('stepPayment');
+  const stepSuccess      = document.getElementById('stepSuccess');
+
+  // ===== HELPERS =====
+  function fmt(n) { return '€' + n.toFixed(2).replace('.', ','); }
+  function getTotal() { let t = 0; cart.forEach(i => t += i.price * i.qty); return t; }
+  function getCount() { let c = 0; cart.forEach(i => c += i.qty); return c; }
+  function randomRef() { return 'STW-' + Math.random().toString(36).slice(2,8).toUpperCase(); }
+
+  // ===== RENDER CART =====
+  function renderCart() {
+    const count = getCount();
+    const total = getTotal();
+
+    headerCartCount.textContent  = count;
+    sidebarCartCount.textContent = count;
+
+    if (cart.size === 0) {
+      cartEmpty.style.display  = '';
+      cartItems.style.display  = 'none';
+      cartFooter.style.display = 'none';
+    } else {
+      cartEmpty.style.display  = 'none';
+      cartItems.style.display  = '';
+      cartFooter.style.display = '';
+
+      cartItems.innerHTML = '';
+      cart.forEach((item, id) => {
+        const row = document.createElement('div');
+        row.className = 'cart-item';
+        row.innerHTML = `
+          <span class="cart-item-name">${item.name}${item.qty > 1 ? ` ×${item.qty}` : ''}</span>
+          <span class="cart-item-price">${fmt(item.price * item.qty)}</span>
+          <button class="cart-item-remove" data-id="${id}" aria-label="Rimuovi">✕</button>
+        `;
+        cartItems.appendChild(row);
+      });
+    }
+    cartTotal.textContent = fmt(total);
+  }
+
+  // ===== ADD / REMOVE =====
+  function addToCart(id, name, price) {
+    if (cart.has(id)) {
+      cart.get(id).qty++;
+    } else {
+      cart.set(id, { name, price: parseFloat(price), qty: 1 });
+    }
+    document.getElementById(`card-${id}`).classList.add('in-cart');
+    const btn = document.querySelector(`.product-add-btn[data-id="${id}"]`);
+    if (btn) btn.textContent = '✓ Aggiunto';
+    renderCart();
+  }
+
+  function removeFromCart(id) {
+    cart.delete(id);
+    const card = document.getElementById(`card-${id}`);
+    if (card) {
+      card.classList.remove('in-cart');
+      const btn = card.querySelector('.product-add-btn');
+      if (btn) btn.textContent = '+ Aggiungi al carrello';
+    }
+    renderCart();
+  }
+
+  // ===== EVENTS: products =====
+  productsGrid.addEventListener('click', e => {
+    const btn = e.target.closest('.product-add-btn');
+    if (!btn) return;
+    const card = btn.closest('.product-card');
+    addToCart(card.dataset.id, card.dataset.name, card.dataset.price);
+  });
+
+  // ===== EVENTS: cart remove =====
+  cartItems.addEventListener('click', e => {
+    const btn = e.target.closest('.cart-item-remove');
+    if (btn) removeFromCart(btn.dataset.id);
+  });
+
+  // ===== TIMER =====
+  function startTimer() {
+    timerSeconds = 120;
+    clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      timerSeconds--;
+      const m = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+      const s = String(timerSeconds % 60).padStart(2, '0');
+      timerEl.textContent = `${m}:${s}`;
+      if (timerSeconds <= 0) {
+        clearInterval(timerInterval);
+        timerEl.textContent = 'scaduto';
+        timerEl.style.color = 'var(--red)';
+      }
+    }, 1000);
+  }
+
+  // ===== MODAL OPEN =====
+  payBtn.addEventListener('click', () => {
+    const total = getTotal();
+    const formatted = fmt(total);
+    modalAmount.textContent       = formatted;
+    modalAmountMobile.textContent = formatted;
+    phoneAmount.textContent       = formatted;
+    successAmount.textContent     = formatted;
+    successRef.textContent        = randomRef();
+    stepPayment.style.display = '';
+    stepSuccess.style.display = 'none';
+    modalBackdrop.classList.add('open');
+    startTimer();
+  });
+
+  // ===== MODAL CLOSE =====
+  function closeModal() {
+    modalBackdrop.classList.remove('open');
+    clearInterval(timerInterval);
+    timerEl.textContent = '02:00';
+    timerEl.style.color = '';
+    timerSeconds = 120;
+  }
+
+  document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+  modalBackdrop.addEventListener('click', e => { if (e.target === modalBackdrop) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ===== SIMULATE SUCCESS =====
+  function showSuccess() {
+    clearInterval(timerInterval);
+    stepPayment.style.display = 'none';
+    stepSuccess.style.display = '';
+  }
+  document.getElementById('simulateBtn').addEventListener('click', showSuccess);
+  document.getElementById('simulateBtnMobile').addEventListener('click', showSuccess);
+
+  document.getElementById('successCloseBtn').addEventListener('click', () => {
+    closeModal();
+    // Reset cart
+    const ids = [...cart.keys()];
+    ids.forEach(id => removeFromCart(id));
+  });
+
+  // ===== TABS =====
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const tab = btn.dataset.tab;
+      document.getElementById('panelQR').style.display     = tab === 'qr'     ? '' : 'none';
+      document.getElementById('panelMobile').style.display = tab === 'mobile' ? '' : 'none';
+    });
+  });
+
+  // ===== MOBILE: scroll cart into view on header cart btn =====
+  document.getElementById('cartToggleBtn').addEventListener('click', () => {
+    document.getElementById('cartSidebar').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  // init
+  renderCart();
+</script>
+
+</body>
+</html>
