@@ -150,6 +150,15 @@ const currentPath = Astro.url.pathname;
     cursor: pointer;
     font-family: var(--sans);
   }
+  /* ponte invisibile che copre il gap tra trigger e menu */
+  .nav-dropdown::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: -20px;
+    right: -20px;
+    height: 12px;
+  }
   .dropdown-menu {
     display: none;
     position: absolute;
