@@ -20,8 +20,7 @@ import Layout from '../layouts/Layout.astro';
           Siti web che<br /><em>convertono.</em><br />Visibilità che<br />dura.
         </h1>
         <p class="hero-desc">
-          Progettiamo siti web professionali e strategie SEO per far crescere la
-          tua attività online. Dal concept al primo cliente organico.
+          Non vendiamo template. Costruiamo ecosistemi digitali su misura — con Astro e Next.js, velocità reale sotto 1 secondo, e integrazioni e-commerce che i siti da 27€ non possono avere.
         </p>
         <div class="hero-ctas">
           <a href="/contatti" class="btn btn-primary">Richiedi un preventivo</a>
@@ -111,6 +110,40 @@ import Layout from '../layouts/Layout.astro';
   <section class="keyword-intro">
     <div class="keyword-inner">
       <p>Realizziamo <strong>siti web con Astro e Next.js</strong> a Palermo e in tutta Italia — framework moderni che garantiscono velocità, SEO tecnica integrata e Core Web Vitals al massimo. Dal sito vetrina all'<strong>e-commerce headless con Shopify</strong>, ogni progetto è costruito su misura per convertire visitatori in clienti.</p>
+    </div>
+  </section>
+
+  <!-- ===== VS TEMPLATE ===== -->
+  <section class="vs-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Perché non siamo un template</span>
+        <h2>La differenza tra<br />27€ e un progetto serio</h2>
+      </div>
+      <div class="vs-grid reveal-stagger">
+        <div class="vs-col vs-col--bad">
+          <span class="vs-col-label">Template economico</span>
+          <ul class="vs-list">
+            <li>Caricamento: 4–8 secondi</li>
+            <li>Lighthouse score: 40–60</li>
+            <li>SEO: plugin generico non configurato</li>
+            <li>Supporto: forum o ticket a pagamento</li>
+            <li>E-commerce: nessuna integrazione nativa</li>
+            <li>Codice: condiviso con migliaia di siti identici</li>
+          </ul>
+        </div>
+        <div class="vs-col vs-col--good">
+          <span class="vs-col-label">WebCreator Studio</span>
+          <ul class="vs-list">
+            <li>Caricamento: &lt; 1 secondo (Astro/Next.js)</li>
+            <li>Lighthouse score: 95–100</li>
+            <li>SEO tecnica integrata nel codice fin dall'inizio</li>
+            <li>Supporto diretto con lo sviluppatore</li>
+            <li>Shopify headless, Satispay, TikTok Shop e altro</li>
+            <li>Codice custom, tuo, ottimizzato per il tuo business</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -281,6 +314,64 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
+  <!-- ===== INTEGRAZIONI ===== -->
+  <section class="integrazioni-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Ecosistema e-commerce</span>
+        <h2>Integrazioni disponibili<br />pronte all'uso</h2>
+      </div>
+      <div class="services-grid reveal-stagger">
+        <div class="service-card">
+          <span class="service-num">01</span>
+          <h3>Shopify Headless</h3>
+          <p>
+            Storefront API con Astro: performance 100/100 Lighthouse, checkout
+            nativo Shopify, gestione prodotti semplificata. Il meglio dei due mondi.
+          </p>
+          <div class="service-tags">
+            <span>Shopify API</span>
+            <span>Astro</span>
+            <span>SSG</span>
+            <span>Cart nativo</span>
+          </div>
+          <a href="/integrazioni/shopify" class="card-link">Vedi demo →</a>
+        </div>
+        <div class="service-card">
+          <span class="service-num">02</span>
+          <h3>Satispay</h3>
+          <p>
+            Pagamenti in-app senza commissioni per l'acquirente. Integrazione
+            diretta su siti custom e landing page, senza intermediari.
+          </p>
+          <div class="service-tags">
+            <span>Satispay API</span>
+            <span>Zero commissioni</span>
+            <span>Mobile-first</span>
+          </div>
+          <a href="/integrazioni/satispay" class="card-link">Vedi demo →</a>
+        </div>
+        <div class="service-card">
+          <span class="service-num">03</span>
+          <h3>TikTok Shop</h3>
+          <p>
+            Sincronizzazione catalogo e acquisto diretto su TikTok. Raggiungi
+            i clienti dove già comprano, senza uscire dall'app.
+          </p>
+          <div class="service-tags">
+            <span>TikTok API</span>
+            <span>Catalogo sync</span>
+            <span>In-app checkout</span>
+          </div>
+          <a href="/integrazioni/tiktok-shop" class="card-link">Vedi demo →</a>
+        </div>
+      </div>
+      <div class="services-cta reveal">
+        <a href="/integrazioni" class="btn btn-outline">Tutte le integrazioni →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== CTA ===== -->
   <section class="cta-section">
     <div class="cta-glow"></div>
@@ -296,6 +387,126 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
 </Layout>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://webcreator-studio.it/#organization",
+      "name": "WebCreator Studio",
+      "url": "https://webcreator-studio.it",
+      "description": "Studio web a Palermo specializzato in Astro e Next.js. Siti veloci sotto 1 secondo, SEO integrata, e-commerce headless con Shopify, Satispay e TikTok Shop. 50+ progetti, Lighthouse 98 medio.",
+      "foundingDate": "2016",
+      "areaServed": [
+        { "@type": "Country", "name": "Italia" },
+        { "@type": "City", "name": "Palermo" }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5",
+        "reviewCount": "3",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Giuseppe Romano" },
+          "reviewBody": "WebCreator Studio ha trasformato il nostro ristorante online. In sei mesi abbiamo triplicato le prenotazioni dal web. Professionali e attenti ad ogni dettaglio.",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" }
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Marco Torrisi" },
+          "reviewBody": "Il sito dello studio legale è finalmente al livello della nostra reputazione. Clienti nuovi ogni settimana grazie al posizionamento organico. Investimento ottimo.",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" }
+        },
+        {
+          "@type": "Review",
+          "author": { "@type": "Person", "name": "Sara Ferrara" },
+          "reviewBody": "Da quando abbiamo il nuovo sito e la strategia SEO, i contatti qualificati sono aumentati del 180%. Il team è sempre disponibile e competente.",
+          "reviewRating": { "@type": "Rating", "ratingValue": "5" }
+        }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servizi WebCreator Studio",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Web Design & Sviluppo",
+              "description": "Siti web con Next.js e Astro: velocità sotto 1 secondo, Lighthouse 95-100, SEO tecnica integrata nel codice fin dall'inizio.",
+              "serviceType": "Web Development",
+              "provider": { "@id": "https://webcreator-studio.it/#organization" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "SEO Strategico",
+              "description": "Posizionamento organico duraturo su Google. Audit, strategia e ottimizzazione continua per traffico qualificato. Risultato medio: +3x traffico organico.",
+              "serviceType": "Search Engine Optimization",
+              "provider": { "@id": "https://webcreator-studio.it/#organization" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Landing Page ad Alta Conversione",
+              "description": "Pagine ottimizzate per convertire visitatori in clienti con copy persuasivo, UX testata e A/B testing.",
+              "serviceType": "Landing Page Design",
+              "provider": { "@id": "https://webcreator-studio.it/#organization" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "E-commerce Headless con Shopify",
+              "description": "Storefront Shopify headless con Astro: performance 100/100 Lighthouse, checkout nativo Shopify, gestione prodotti semplificata.",
+              "serviceType": "E-commerce Development",
+              "provider": { "@id": "https://webcreator-studio.it/#organization" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Integrazione Satispay",
+              "description": "Pagamenti in-app senza commissioni per l'acquirente. Integrazione diretta su siti custom e landing page.",
+              "serviceType": "Payment Integration",
+              "provider": { "@id": "https://webcreator-studio.it/#organization" }
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "TikTok Shop Integration",
+              "description": "Sincronizzazione catalogo e acquisto diretto su TikTok. Raggiungi i clienti dove già comprano, senza uscire dall'app.",
+              "serviceType": "Social Commerce Integration",
+              "provider": { "@id": "https://webcreator-studio.it/#organization" }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://webcreator-studio.it/#webpage",
+      "url": "https://webcreator-studio.it",
+      "name": "WebCreator Studio — Sviluppo Web con Astro e Next.js a Palermo",
+      "description": "Studio web design a Palermo specializzato in Astro e Next.js. Siti veloci, SEO integrata, e-commerce headless. Portfolio e demo interattive disponibili.",
+      "isPartOf": { "@id": "https://webcreator-studio.it/#website" },
+      "about": { "@id": "https://webcreator-studio.it/#organization" }
+    }
+  ]
+})} />
 
 <style>
   /* ===== HERO ===== */
@@ -530,6 +741,112 @@ import Layout from '../layouts/Layout.astro';
   .keyword-intro strong {
     color: var(--text);
     font-weight: 500;
+  }
+
+  /* ===== VS TEMPLATE ===== */
+  .vs-section {
+    padding: 100px 0;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .vs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .vs-col {
+    background: var(--bg);
+    padding: 2.5rem;
+  }
+
+  .vs-col-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-family: var(--sans);
+  }
+
+  .vs-col--bad .vs-col-label {
+    color: var(--text-subtle);
+  }
+
+  .vs-col--good .vs-col-label {
+    color: var(--accent);
+  }
+
+  .vs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .vs-list li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding-left: 1.25rem;
+    position: relative;
+    font-family: var(--sans);
+  }
+
+  .vs-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .vs-col--bad .vs-list li {
+    color: var(--text-subtle);
+  }
+
+  .vs-col--bad .vs-list li::before {
+    background: var(--text-subtle);
+  }
+
+  .vs-col--good .vs-list li {
+    color: var(--text-muted);
+  }
+
+  .vs-col--good .vs-list li::before {
+    background: var(--accent);
+  }
+
+  /* ===== INTEGRAZIONI ===== */
+  .integrazioni-section {
+    padding: 100px 0;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+  }
+
+  .card-link {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    font-family: var(--sans);
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s ease;
+  }
+
+  .card-link:hover {
+    opacity: 0.7;
   }
 
   /* ===== SERVICES ===== */
@@ -841,6 +1158,10 @@ import Layout from '../layouts/Layout.astro';
   }
 
   @media (max-width: 768px) {
+    .vs-grid {
+      grid-template-columns: 1fr;
+    }
+
     .hero-inner {
       flex-direction: column;
       padding-top: 4rem;
