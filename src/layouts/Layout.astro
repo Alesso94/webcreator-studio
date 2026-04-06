@@ -55,6 +55,46 @@ const canonicalURL = canonical ?? `https://webcreator-studio.it${Astro.url.pathn
     </noscript>
 
     <ClientRouter />
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LHDM1F0LNB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LHDM1F0LNB');
+    </script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://webcreator-studio.it/#organization",
+          "name": "WebCreator Studio",
+          "url": "https://webcreator-studio.it",
+          "logo": "https://webcreator-studio.it/favicon.svg",
+          "description": "Studio di web design e sviluppo web a Palermo specializzato in Astro, Next.js e SEO tecnica.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Palermo",
+            "addressRegion": "PA",
+            "addressCountry": "IT"
+          },
+          "sameAs": ["https://webcreator-seo.it"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://webcreator-studio.it/#website",
+          "url": "https://webcreator-studio.it",
+          "name": "WebCreator Studio",
+          "publisher": { "@id": "https://webcreator-studio.it/#organization" }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <Nav />
