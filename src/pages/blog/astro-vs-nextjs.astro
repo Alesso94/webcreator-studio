@@ -1,0 +1,285 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Astro vs Next.js: quale framework scegliere nel 2026 — WebCreator Studio"
+  description="Confronto pratico tra Astro e Next.js: performance, SEO, casi d'uso e costi. Guida per scegliere il framework giusto per il tuo sito web nel 2026."
+  canonical="https://webcreator-studio.it/blog/astro-vs-nextjs"
+>
+
+<article class="article-wrap">
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li><a href="/">Home</a></li>
+        <li aria-hidden="true">›</li>
+        <li><a href="/blog">Blog</a></li>
+        <li aria-hidden="true">›</li>
+        <li aria-current="page">Astro vs Next.js</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="article-hero">
+    <div class="container">
+      <div class="article-meta">
+        <span class="article-cat" style="color:#4a8abf">Web Dev</span>
+        <span class="article-sep">·</span>
+        <time datetime="2026-03-15">15 marzo 2026</time>
+        <span class="article-sep">·</span>
+        <span>6 min di lettura</span>
+      </div>
+      <h1>Come scegliere il framework giusto:<br /><em>Astro vs Next.js.</em></h1>
+      <p class="article-intro">
+        Astro e Next.js sono i due framework di riferimento per lo sviluppo web moderno.
+        Entrambi eccellenti, ma con filosofie opposte. Ecco come scegliere in base al tuo progetto.
+      </p>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <div class="article-body">
+    <div class="container article-content">
+
+      <h2>La domanda giusta non è "quale è meglio"</h2>
+      <p>
+        Ogni mese riceviamo questa domanda da imprenditori e sviluppatori: <em>uso Astro o Next.js?</em>
+        La risposta onesta è che dipende interamente da cosa deve fare il tuo sito.
+        Scegliere il framework sbagliato significa pagare più del dovuto in termini di complessità,
+        tempo di sviluppo e performance a lungo termine.
+      </p>
+
+      <h2>Astro: nato per i siti content-first</h2>
+      <p>
+        Astro è un framework pensato per siti dove il contenuto è protagonista: siti vetrina,
+        portfolio, blog, landing page, siti istituzionali. Il suo principio fondamentale è
+        <strong>zero JavaScript di default</strong>: ogni componente viene renderizzato come HTML
+        statico a meno che tu non richieda esplicitamente interattività.
+      </p>
+      <p>Il risultato è misurabile:</p>
+      <ul>
+        <li>Lighthouse score &gt; 95 praticamente garantito su siti nuovi</li>
+        <li>LCP (Largest Contentful Paint) spesso sotto 1 secondo</li>
+        <li>Nessun bundle JavaScript pesante inviato al browser</li>
+        <li>Deploy statico su CDN globale: hosting quasi gratuito (Vercel, Netlify, Cloudflare Pages)</li>
+      </ul>
+      <p>
+        Astro supporta qualsiasi framework UI: puoi usare componenti React, Vue, Svelte e Solid
+        nella stessa pagina con la tecnica delle <em>Islands</em> — solo le parti interattive
+        caricano JavaScript.
+      </p>
+
+      <h2>Next.js: la scelta per le applicazioni dinamiche</h2>
+      <p>
+        Next.js è il framework React di riferimento per applicazioni web complesse. La sua forza
+        è la flessibilità: puoi mescolare pagine statiche, rendering lato server (SSR) e
+        API routes nello stesso progetto.
+      </p>
+      <p>Ha senso scegliere Next.js quando il tuo sito:</p>
+      <ul>
+        <li>Ha un'area utenti con autenticazione (login, dashboard, profili)</li>
+        <li>Mostra dati in tempo reale o personalizzati per utente</li>
+        <li>È un e-commerce con carrello, ordini, pagamenti</li>
+        <li>Ha funzionalità che richiedono API routes (form complessi, webhook, integrazioni)</li>
+      </ul>
+      <p>
+        Next.js con l'App Router (introdotto nella v13) è anche molto competitivo in termini di
+        performance grazie ai React Server Components, che riducono il JavaScript inviato al client.
+        Non raggiunge i livelli di Astro su siti statici, ma la differenza è spesso trascurabile
+        con una buona ottimizzazione.
+      </p>
+
+      <h2>Confronto diretto per caso d'uso</h2>
+      <div class="comparison-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Tipo di sito</th>
+              <th>Consigliato</th>
+              <th>Motivo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sito vetrina / portfolio</td>
+              <td class="winner">Astro</td>
+              <td>Performance massima, costi minimi</td>
+            </tr>
+            <tr>
+              <td>Blog / magazine</td>
+              <td class="winner">Astro</td>
+              <td>Content collections, SEO nativo</td>
+            </tr>
+            <tr>
+              <td>Landing page</td>
+              <td class="winner">Astro</td>
+              <td>Zero overhead JS, ottimo per conversioni</td>
+            </tr>
+            <tr>
+              <td>E-commerce headless</td>
+              <td class="winner">Next.js</td>
+              <td>SSR per prezzi/stock in tempo reale</td>
+            </tr>
+            <tr>
+              <td>SaaS / app con login</td>
+              <td class="winner">Next.js</td>
+              <td>Auth, session, route protette</td>
+            </tr>
+            <tr>
+              <td>Dashboard / admin</td>
+              <td class="winner">Next.js</td>
+              <td>Interattività complessa, dati dinamici</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>E il SEO?</h2>
+      <p>
+        Entrambi i framework generano HTML indicizzabile da Google. Le differenze rilevanti sono:
+      </p>
+      <ul>
+        <li>
+          <strong>Astro</strong> è vantaggioso perché i Core Web Vitals migliori si traducono
+          direttamente in ranking più alto nei risultati locali e organici.
+        </li>
+        <li>
+          <strong>Next.js</strong> con SSR garantisce che i contenuti dinamici siano sempre
+          freschi per il crawler di Google, fondamentale per e-commerce con varianti di prezzo.
+        </li>
+      </ul>
+      <p>
+        Per un sito di servizi locali a Palermo — avvocato, dentista, artigiano, ristorante —
+        Astro è quasi sempre la scelta giusta: performance superiore, costi di hosting ridotti,
+        manutenzione minima.
+      </p>
+
+      <h2>La nostra raccomandazione</h2>
+      <p>
+        In WebCreator Studio usiamo entrambi i framework a seconda del progetto.
+        Questo sito (webcreator-studio.it) è costruito con <strong>Astro</strong>.
+        Il sito principale (<a href="https://webcreator-seo.it" target="_blank" rel="noopener">webcreator-seo.it</a>)
+        è costruito con <strong>Next.js</strong> perché ha form, API routes, CMS dinamico
+        con Sanity e i18n su 5 lingue.
+      </p>
+      <p>
+        Se non sai da dove partire, contattaci: facciamo una call gratuita di 30 minuti
+        per capire insieme qual è la tecnologia giusta per il tuo progetto.
+      </p>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="article-cta">
+    <div class="container article-cta-inner">
+      <div>
+        <h2>Hai un progetto in mente?</h2>
+        <p>Ti aiutiamo a scegliere lo stack giusto e a costruire qualcosa che funziona davvero.</p>
+      </div>
+      <a href="/contatti" class="btn btn-primary">Parliamo del tuo progetto →</a>
+    </div>
+  </div>
+
+</article>
+
+</Layout>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://webcreator-studio.it/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://webcreator-studio.it/blog" },
+        { "@type": "ListItem", "position": 3, "name": "Astro vs Next.js", "item": "https://webcreator-studio.it/blog/astro-vs-nextjs" }
+      ]
+    },
+    {
+      "@type": "Article",
+      "headline": "Come scegliere il framework giusto: Astro vs Next.js",
+      "description": "Confronto pratico tra Astro e Next.js: performance, SEO, casi d'uso e costi.",
+      "datePublished": "2026-03-15",
+      "author": { "@type": "Organization", "name": "WebCreator Studio" },
+      "publisher": { "@id": "https://webcreator-studio.it/#organization" },
+      "url": "https://webcreator-studio.it/blog/astro-vs-nextjs"
+    }
+  ]
+}
+</script>
+
+<style>
+  .article-wrap { padding-bottom: 0; }
+
+  .breadcrumb { padding: 16px 0; border-bottom: 1px solid var(--border); }
+  .breadcrumb-list {
+    display: flex; align-items: center; gap: 8px;
+    list-style: none; font-size: 0.8rem; color: var(--text-muted);
+  }
+  .breadcrumb-list a { color: var(--text-muted); transition: color .2s; }
+  .breadcrumb-list a:hover { color: var(--accent); }
+  .breadcrumb-list [aria-current] { color: var(--text); }
+
+  .article-hero { padding: 56px 0 40px; border-bottom: 1px solid var(--border); }
+  .article-meta {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.8rem; color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .article-cat { font-weight: 600; }
+  .article-sep { color: var(--text-subtle); }
+  .article-hero h1 { font-size: clamp(1.9rem, 4vw, 2.8rem); margin-bottom: 16px; }
+  .article-hero h1 em { font-style: italic; color: var(--accent); }
+  .article-intro {
+    font-size: 1rem; color: var(--text-muted);
+    max-width: 620px; line-height: 1.7;
+  }
+
+  .article-body { padding: 48px 0 64px; }
+  .article-content { max-width: 720px; }
+
+  .article-content h2 {
+    font-size: 1.4rem; margin: 40px 0 16px;
+    padding-top: 40px; border-top: 1px solid var(--border);
+  }
+  .article-content h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+  .article-content p { color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+  .article-content ul {
+    padding-left: 20px; margin-bottom: 16px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .article-content li { color: var(--text-muted); line-height: 1.7; }
+  .article-content strong { color: var(--text); font-weight: 600; }
+  .article-content em { color: var(--accent); font-style: italic; }
+  .article-content a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+  .comparison-table { overflow-x: auto; margin: 24px 0; }
+  .comparison-table table {
+    width: 100%; border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  .comparison-table th {
+    background: var(--bg2); color: var(--text-muted);
+    padding: 10px 16px; text-align: left;
+    font-weight: 500; border-bottom: 1px solid var(--border);
+  }
+  .comparison-table td {
+    padding: 10px 16px; border-bottom: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+  .comparison-table .winner { color: var(--accent); font-weight: 600; }
+
+  .article-cta { padding: 56px 0; border-top: 1px solid var(--border); }
+  .article-cta-inner {
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 32px; flex-wrap: wrap;
+  }
+  .article-cta h2 { font-size: 1.5rem; margin-bottom: 8px; }
+  .article-cta p { color: var(--text-muted); font-size: 0.9rem; }
+</style>
