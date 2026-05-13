@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
-    "astro": "^6.1.1"
+    "astro": "^6.1.10"
   },
   "overrides": {
     "defu": ">=6.1.5"
